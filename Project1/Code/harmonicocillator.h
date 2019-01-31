@@ -1,15 +1,16 @@
 #pragma once
 #include "wavefunction.h"
+#include "particle.h"
 
-class harmonicocillator
+class Harmonicocillator
 {
 public:
-	harmonicocillator();
-	void setomegaHo(double omegaHo) { this->omegaHo = omegaHo; };
+	Harmonicocillator();
+	void setomegaHo(double omegaHo) { this->omegaHo = omegaHo; }
 	void setDimension(double dimension) { this->dimension = dimension; }
 	void setPsi();
-	void setAlpha(double alpha) { this->alpha = alpha; };
-	void setNumberOfParticles(int numberOfParticles) { this->numberOfParticles; }
+	void setAlpha(double alpha) { this->alpha = alpha; }
+	void setNumberOfParticles(int numberOfParticles) { this->numberOfParticles = numberOfParticles; }
 	double harmonicOcillatorWavefunction();
 	double localEnergy();
 private:
@@ -21,7 +22,4 @@ private:
 
 };
 
-harmonicocillator::harmonicocillator()
-{
-}
 
