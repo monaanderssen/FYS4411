@@ -2,7 +2,7 @@
 #include "wavefunction.h"
 #include <vector>
 #include <random>
-
+#include <cmath>
 using std::vector;
 
 
@@ -27,3 +27,5 @@ void Wavefunction::setParticels() {
 	}
 	particels = temp;
 }
+
+
