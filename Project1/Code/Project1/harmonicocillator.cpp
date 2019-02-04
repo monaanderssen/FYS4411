@@ -2,6 +2,7 @@
 #include "wavefunction.h"
 #include "particle.h"
 #include <vector>
+#include <cmath>
 
 using std::vector;
 
