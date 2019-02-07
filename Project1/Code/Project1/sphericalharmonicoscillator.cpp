@@ -1,4 +1,4 @@
-#include "harmonicocillator.h"
+#include "sphericalharmonicoscillator.h"
 #include "wavefunction.h"
 #include "particle.h"
 #include <vector>
@@ -7,20 +7,20 @@
 using std::vector;
 
 
-Harmonicocillator::Harmonicocillator()
+SphericalHarmonicOscillator::SphericalHarmonicOscillator()
 {
 }
 
 
-void Harmonicocillator::setPsi() {
+void SphericalHarmonicOscillator::setPsi() {
 	psi.setDimensions(dimension);
-	psi.setNumberOfParticels(numberOfParticles);
-	psi.setParticels();
+    psi.setNumberOfParticles(numberOfParticles);
+    psi.setParticles();
 }
 
 
 
-double Harmonicocillator::harmonicOcillatorWavefunction() {
+double SphericalHarmonicOscillator::harmonicOscillatorWavefunction() {
 	double product = 1.0;
 	int dimensions = psi.getDimensions();
 	int N = psi.getNumberOfParticles();
@@ -36,7 +36,7 @@ double Harmonicocillator::harmonicOcillatorWavefunction() {
 }
 
 
-double Harmonicocillator::localEnergy() {
+double SphericalHarmonicOscillator::localEnergy() {
 	double sum = 0.0;
 	int dimensions = psi.getDimensions();
 	int N = psi.getNumberOfParticles();

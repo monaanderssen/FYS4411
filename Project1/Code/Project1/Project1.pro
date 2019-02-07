@@ -5,11 +5,15 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-    harmonicocillator.cpp \
+    sphericalharmonicoscillator.cpp \
     particle.cpp \
-    wavefunction.cpp
+    wavefunction.cpp \
+    harmonicoscillator.cpp \
+    metropolis.cpp
 
 HEADERS += \
-    harmonicocillator.h \
+    sphericalharmonicoscillator.h \
     particle.h \
-    wavefunction.h
+    wavefunction.h \
+    harmonicoscillator.h \
+    metropolis.h
