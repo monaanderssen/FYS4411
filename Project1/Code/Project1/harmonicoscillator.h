@@ -1,17 +1,20 @@
-#ifndef HARMONICOSCILLATOR_H
-#define HARMONICOSCILLATOR_H
+#pragma once
 #include "wavefunction.h"
 #include "particle.h"
 
 
-class HarmonicOscillator
+class HarmonicOscillator : public Wavefunction
 {
 public:
-    HarmonicOscillator();
+    HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_);
+    void set_alpha(double alpha_);
+    double g(int particleNumber);
+    double f(int particleOne, int particleTwo);
+    double harmonicWavefunction();
+    double PDF();
 
 
 private:
-
+    double a, alpha, beta, gamma;
 };
 
-#endif // HARMONICOSCILLATOR_H

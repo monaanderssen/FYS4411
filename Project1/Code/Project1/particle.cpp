@@ -1,15 +1,15 @@
 #include"particle.h"
 
-using std::vector;
+
 
 Particle::Particle(){
 }
 
-void Particle::setPosition(vector<double> &position) {
+void Particle::setPosition(vec &position) {
 	this->position = position;
 	dimension = position.size();
 }
 
-void Particle::changePosition(double change, int cordinate) {
-	position.at(cordinate) += change; 
+void Particle::changePosition(vec change) {
+    position += change;
 }

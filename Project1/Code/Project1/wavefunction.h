@@ -2,22 +2,18 @@
 #include "particle.h"
 using std::vector;
 
-class Wavefunction
+class Wavefunction : public Particle
 {
 public:
-	Wavefunction();
-	void setDimensions(int dimensions) { this->dimensions = dimensions; }
+    Wavefunction();
     void setNumberOfParticles(int numberOfParticels) { this->numberOfParticles = numberOfParticles; }
     void setParticles();
     int getNumberOfParticles() { return numberOfParticles; }
-	int getDimensions() { return dimensions; }
 	Particle getParticle(int particleNumber);
-    vector<Particle> getParticels() { return particles; }
-
+    vector<Particle> getParticles() { return particles; }
+    int numberOfParticles;
 
 private:
-	int dimensions;
-    int numberOfParticles;
     vector<Particle> particles;
 
 };

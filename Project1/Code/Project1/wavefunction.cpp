@@ -19,13 +19,10 @@ void Wavefunction::setParticles() {
 	std::default_random_engine generator;
 	std::uniform_real_distribution<double> distribution(-1.0, 1.0);
     for (int i = 0; i < numberOfParticles; i++) {
-		vector<double> position(dimensions);
-		for (int j = 0; j < dimensions; j++) {
-			position[j] = distribution(generator);
-		}
+        vec position(dimension);
+        position.randu();
 		temp[i].setPosition(position);
 	}
     particles = temp;
 }
-
 

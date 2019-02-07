@@ -2,7 +2,7 @@
 #include "wavefunction.h"
 #include "particle.h"
 
-class SphericalHarmonicOscillator
+class SphericalHarmonicOscillator : public Wavefunction
 {
 public:
     SphericalHarmonicOscillator();
@@ -13,11 +13,12 @@ public:
 	void setNumberOfParticles(int numberOfParticles) { this->numberOfParticles = numberOfParticles; }
     double harmonicOscillatorWavefunction();
 	double localEnergy();
+    double PDF();
 private:
 	int numberOfParticles;
 	double alpha;
-	double omegaHo;
-	double dimension;
+    double omegaHo = 1.;
+    int dimension;
 	Wavefunction psi;
 
 };
