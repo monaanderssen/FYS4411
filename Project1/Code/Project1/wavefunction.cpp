@@ -21,8 +21,10 @@ void Wavefunction::setParticles() {
     for (int i = 0; i < numberOfParticles; i++) {
         vec position(dimension);
         position.randn();
-		temp[i].setPosition(position);
-	}
+        position*= 0.1;
+        temp[i].setPosition(position);
+    }
     particles = temp;
 }
+
 

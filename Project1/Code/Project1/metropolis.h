@@ -29,12 +29,12 @@ public:
 template <class T>
 double Metropolis<T>::bruteForceStep(double step){
     mat r_n(dimension,n);
-    r_n.randu();
-    r_n -= 0.5;
-    r_n = r_n*step;
+    r_n.randn();
+    r_n *= step;
     double Aij = randu();
     for(int i = 0; i < n; i++){
         PDF.getParticle(i)->changePosition(r_n.col(i));
+
     }
     double p2 = PDF.PDF();
     if(Aij <= p2/p1){
@@ -45,8 +45,7 @@ double Metropolis<T>::bruteForceStep(double step){
     }
     else{
         for(int i = 0; i < n; i++){
-            r_n = - r_n;
-            PDF.getParticle(i)->changePosition(r_n.col(i));
+            PDF.getParticle(i)->changePosition(-r_n.col(i));
         }
         return PDF.localEnergy();
 
@@ -57,9 +56,18 @@ double Metropolis<T>::bruteForceStep(double step){
 template <class T>
 vec Metropolis<T>::bruteForceSolve(double step, int iterations){
     p1 = PDF.PDF();
-    vec E(iterations);
+    vec ret(2);
+    double E2 = 0;
+    double E = 0;
+    double bruteStep;
     for(int i = 0; i < iterations; i++){
-        E(i) = bruteForceStep(step);
+        bruteStep = bruteForceStep(step);
+        E += bruteStep;
+        E2 += bruteStep*bruteStep;
     }
-    return E;
+    E /= iterations;
+    E2 /= iterations;
+    ret(0) = E;
+    ret(1) = E2 - E*E;
+    return ret;
 }

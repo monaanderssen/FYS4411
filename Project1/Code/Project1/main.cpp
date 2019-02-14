@@ -10,12 +10,13 @@ int main()
 {
     SphericalHarmonicOscillator test;
     test.setDimension(3);
-    test.setNumberOfParticles(10);
-    test.setAlpha(0.1);
+    test.setNumberOfParticles(5);
+    test.setAlpha(0.45);
     test.setomegaHo(1);
     test.setPsi();
     Metropolis<SphericalHarmonicOscillator> ttt(test);
-    vec E = ttt.bruteForceSolve(1, 1000);
-    cout<< mean(E) << endl;
+    int iters = 10000;
+    vec En = ttt.bruteForceSolve(0.1, iters);
+    cout<< En(0) << " " << En(1) << endl;
     return 0;
 }
