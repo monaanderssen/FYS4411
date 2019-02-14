@@ -10,11 +10,11 @@ MAKEFILE      = Makefile
 
 ####### Compiler, tools and options
 
-CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
-CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+CC            = /Library/Developer/CommandLineTools/usr/bin/clang
+CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
 DEFINES       = -DQT_QML_DEBUG
-CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
+CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I../Project1 -I. -I/usr/local/include -I/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/macx-clang
 QMAKE         = /Users/stianbilek/Qt/5.9.2/clang_64/bin/qmake
 DEL_FILE      = rm -f
@@ -36,11 +36,11 @@ TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Project11.0.0
 DISTDIR = /Users/stianbilek/Documents/GitHub.nosync/FYS4411/Project1/Code/build-Project1-Desktop_Qt_5_9_2_clang_64bit-Debug/.tmp/Project11.0.0
-LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks
+LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
+LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks
 LIBS          = $(SUBLIBS) -L/usr/local/lib -larmadillo -llapack -lblas 
-AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
-RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
+AR            = /Library/Developer/CommandLineTools/usr/bin/ar cq
+RANLIB        = /Library/Developer/CommandLineTools/usr/bin/ranlib -s
 SED           = sed
 STRIP         = strip
 
@@ -193,7 +193,6 @@ DIST          = /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/spec_pre.pr
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/spec_post.prf \
-		../Project1/.qmake.stash \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/toolchain.prf \
@@ -372,7 +371,6 @@ Makefile: ../Project1/Project1.pro /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/m
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/toolchain.prf \
@@ -528,7 +526,6 @@ Makefile: ../Project1/Project1.pro /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/m
 /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/qt_config.prf:
 /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/stianbilek/Qt/5.9.2/clang_64/mkspecs/features/toolchain.prf:
@@ -573,7 +570,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -706,6 +702,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/diagview_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_each_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_bones.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_bones.hpp \
 		/usr/local/include/armadillo_bits/diskio_bones.hpp \
 		/usr/local/include/armadillo_bits/wall_clock_bones.hpp \
 		/usr/local/include/armadillo_bits/running_stat_bones.hpp \
@@ -748,6 +745,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/op_strans_bones.hpp \
 		/usr/local/include/armadillo_bits/op_var_bones.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_bones.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_bones.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_bones.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_bones.hpp \
 		/usr/local/include/armadillo_bits/op_resize_bones.hpp \
@@ -759,6 +757,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/op_pinv_bones.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_bones.hpp \
 		/usr/local/include/armadillo_bits/op_flip_bones.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_bones.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_bones.hpp \
 		/usr/local/include/armadillo_bits/op_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_bones.hpp \
@@ -786,6 +785,9 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/op_sqrtmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_range_bones.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_roots_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_bones.hpp \
@@ -808,6 +810,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/glue_polyval_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_bones.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_bones.hpp \
@@ -822,10 +825,14 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/spop_var_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_bones.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_EigsSelect.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp \
@@ -846,27 +853,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/SpProxy.hpp \
 		/usr/local/include/armadillo_bits/diagmat_proxy.hpp \
 		/usr/local/include/armadillo_bits/strip.hpp \
-		/usr/local/include/armadillo_bits/Op_meat.hpp \
-		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/Glue_meat.hpp \
-		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_aux.hpp \
-		/usr/local/include/armadillo_bits/eOp_meat.hpp \
-		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/Base_meat.hpp \
-		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
-		/usr/local/include/armadillo_bits/Gen_meat.hpp \
-		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_bones.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_meat.hpp \
 		/usr/local/include/armadillo_bits/fn_n_unique.hpp \
@@ -928,6 +915,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/fn_svd.hpp \
 		/usr/local/include/armadillo_bits/fn_solve.hpp \
 		/usr/local/include/armadillo_bits/fn_repmat.hpp \
+		/usr/local/include/armadillo_bits/fn_repelem.hpp \
 		/usr/local/include/armadillo_bits/fn_reshape.hpp \
 		/usr/local/include/armadillo_bits/fn_vectorise.hpp \
 		/usr/local/include/armadillo_bits/fn_resize.hpp \
@@ -941,6 +929,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/fn_rank.hpp \
 		/usr/local/include/armadillo_bits/fn_kron.hpp \
 		/usr/local/include/armadillo_bits/fn_flip.hpp \
+		/usr/local/include/armadillo_bits/fn_reverse.hpp \
 		/usr/local/include/armadillo_bits/fn_as_scalar.hpp \
 		/usr/local/include/armadillo_bits/fn_princomp.hpp \
 		/usr/local/include/armadillo_bits/fn_cross.hpp \
@@ -975,6 +964,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/fn_interp1.hpp \
 		/usr/local/include/armadillo_bits/fn_qz.hpp \
 		/usr/local/include/armadillo_bits/fn_diff.hpp \
+		/usr/local/include/armadillo_bits/fn_hess.hpp \
 		/usr/local/include/armadillo_bits/fn_schur.hpp \
 		/usr/local/include/armadillo_bits/fn_kmeans.hpp \
 		/usr/local/include/armadillo_bits/fn_sqrtmat.hpp \
@@ -984,6 +974,12 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/fn_polyfit.hpp \
 		/usr/local/include/armadillo_bits/fn_polyval.hpp \
 		/usr/local/include/armadillo_bits/fn_intersect.hpp \
+		/usr/local/include/armadillo_bits/fn_normpdf.hpp \
+		/usr/local/include/armadillo_bits/fn_normcdf.hpp \
+		/usr/local/include/armadillo_bits/fn_mvnrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_chi2rnd.hpp \
+		/usr/local/include/armadillo_bits/fn_wishrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_roots.hpp \
 		/usr/local/include/armadillo_bits/fn_speye.hpp \
 		/usr/local/include/armadillo_bits/fn_spones.hpp \
 		/usr/local/include/armadillo_bits/fn_sprandn.hpp \
@@ -994,11 +990,33 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/fn_svds.hpp \
 		/usr/local/include/armadillo_bits/hdf5_misc.hpp \
 		/usr/local/include/armadillo_bits/fft_engine.hpp \
+		/usr/local/include/armadillo_bits/band_helper.hpp \
+		/usr/local/include/armadillo_bits/sympd_helper.hpp \
 		/usr/local/include/armadillo_bits/mul_gemv.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm_mixed.hpp \
 		/usr/local/include/armadillo_bits/mul_syrk.hpp \
 		/usr/local/include/armadillo_bits/mul_herk.hpp \
+		/usr/local/include/armadillo_bits/Op_meat.hpp \
+		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/Glue_meat.hpp \
+		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eOp_meat.hpp \
+		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/Base_meat.hpp \
+		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
+		/usr/local/include/armadillo_bits/Gen_meat.hpp \
+		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_core_meat.hpp \
 		/usr/local/include/armadillo_bits/eglue_core_meat.hpp \
 		/usr/local/include/armadillo_bits/cond_rel_meat.hpp \
@@ -1024,6 +1042,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/diagview_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_each_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_meat.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_meat.hpp \
 		/usr/local/include/armadillo_bits/SpValProxy_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_iterators_meat.hpp \
@@ -1055,6 +1074,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/op_strans_meat.hpp \
 		/usr/local/include/armadillo_bits/op_var_meat.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_meat.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_meat.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_meat.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_meat.hpp \
 		/usr/local/include/armadillo_bits/op_resize_meat.hpp \
@@ -1066,6 +1086,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/op_pinv_meat.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_meat.hpp \
 		/usr/local/include/armadillo_bits/op_flip_meat.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_meat.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_meat.hpp \
 		/usr/local/include/armadillo_bits/op_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_meat.hpp \
@@ -1093,6 +1114,9 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/op_sqrtmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_range_meat.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_roots_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_meat.hpp \
@@ -1115,6 +1139,7 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/glue_polyval_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_meat.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_meat.hpp \
@@ -1129,10 +1154,14 @@ main.o: ../Project1/main.cpp ../Project1/sphericalharmonicoscillator.h \
 		/usr/local/include/armadillo_bits/spop_var_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_meat.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_meat.hpp \
 		/usr/local/include/armadillo_bits/newarp_cx_attrib.hpp \
 		/usr/local/include/armadillo_bits/newarp_SortEigenvalue.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp \
@@ -1258,6 +1287,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/diagview_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_each_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_bones.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_bones.hpp \
 		/usr/local/include/armadillo_bits/diskio_bones.hpp \
 		/usr/local/include/armadillo_bits/wall_clock_bones.hpp \
 		/usr/local/include/armadillo_bits/running_stat_bones.hpp \
@@ -1300,6 +1330,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/op_strans_bones.hpp \
 		/usr/local/include/armadillo_bits/op_var_bones.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_bones.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_bones.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_bones.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_bones.hpp \
 		/usr/local/include/armadillo_bits/op_resize_bones.hpp \
@@ -1311,6 +1342,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/op_pinv_bones.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_bones.hpp \
 		/usr/local/include/armadillo_bits/op_flip_bones.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_bones.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_bones.hpp \
 		/usr/local/include/armadillo_bits/op_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_bones.hpp \
@@ -1338,6 +1370,9 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/op_sqrtmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_range_bones.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_roots_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_bones.hpp \
@@ -1360,6 +1395,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/glue_polyval_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_bones.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_bones.hpp \
@@ -1374,10 +1410,14 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/spop_var_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_bones.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_EigsSelect.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp \
@@ -1398,27 +1438,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/SpProxy.hpp \
 		/usr/local/include/armadillo_bits/diagmat_proxy.hpp \
 		/usr/local/include/armadillo_bits/strip.hpp \
-		/usr/local/include/armadillo_bits/Op_meat.hpp \
-		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/Glue_meat.hpp \
-		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_aux.hpp \
-		/usr/local/include/armadillo_bits/eOp_meat.hpp \
-		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/Base_meat.hpp \
-		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
-		/usr/local/include/armadillo_bits/Gen_meat.hpp \
-		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_bones.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_meat.hpp \
 		/usr/local/include/armadillo_bits/fn_n_unique.hpp \
@@ -1480,6 +1500,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/fn_svd.hpp \
 		/usr/local/include/armadillo_bits/fn_solve.hpp \
 		/usr/local/include/armadillo_bits/fn_repmat.hpp \
+		/usr/local/include/armadillo_bits/fn_repelem.hpp \
 		/usr/local/include/armadillo_bits/fn_reshape.hpp \
 		/usr/local/include/armadillo_bits/fn_vectorise.hpp \
 		/usr/local/include/armadillo_bits/fn_resize.hpp \
@@ -1493,6 +1514,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/fn_rank.hpp \
 		/usr/local/include/armadillo_bits/fn_kron.hpp \
 		/usr/local/include/armadillo_bits/fn_flip.hpp \
+		/usr/local/include/armadillo_bits/fn_reverse.hpp \
 		/usr/local/include/armadillo_bits/fn_as_scalar.hpp \
 		/usr/local/include/armadillo_bits/fn_princomp.hpp \
 		/usr/local/include/armadillo_bits/fn_cross.hpp \
@@ -1527,6 +1549,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/fn_interp1.hpp \
 		/usr/local/include/armadillo_bits/fn_qz.hpp \
 		/usr/local/include/armadillo_bits/fn_diff.hpp \
+		/usr/local/include/armadillo_bits/fn_hess.hpp \
 		/usr/local/include/armadillo_bits/fn_schur.hpp \
 		/usr/local/include/armadillo_bits/fn_kmeans.hpp \
 		/usr/local/include/armadillo_bits/fn_sqrtmat.hpp \
@@ -1536,6 +1559,12 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/fn_polyfit.hpp \
 		/usr/local/include/armadillo_bits/fn_polyval.hpp \
 		/usr/local/include/armadillo_bits/fn_intersect.hpp \
+		/usr/local/include/armadillo_bits/fn_normpdf.hpp \
+		/usr/local/include/armadillo_bits/fn_normcdf.hpp \
+		/usr/local/include/armadillo_bits/fn_mvnrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_chi2rnd.hpp \
+		/usr/local/include/armadillo_bits/fn_wishrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_roots.hpp \
 		/usr/local/include/armadillo_bits/fn_speye.hpp \
 		/usr/local/include/armadillo_bits/fn_spones.hpp \
 		/usr/local/include/armadillo_bits/fn_sprandn.hpp \
@@ -1546,11 +1575,33 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/fn_svds.hpp \
 		/usr/local/include/armadillo_bits/hdf5_misc.hpp \
 		/usr/local/include/armadillo_bits/fft_engine.hpp \
+		/usr/local/include/armadillo_bits/band_helper.hpp \
+		/usr/local/include/armadillo_bits/sympd_helper.hpp \
 		/usr/local/include/armadillo_bits/mul_gemv.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm_mixed.hpp \
 		/usr/local/include/armadillo_bits/mul_syrk.hpp \
 		/usr/local/include/armadillo_bits/mul_herk.hpp \
+		/usr/local/include/armadillo_bits/Op_meat.hpp \
+		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/Glue_meat.hpp \
+		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eOp_meat.hpp \
+		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/Base_meat.hpp \
+		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
+		/usr/local/include/armadillo_bits/Gen_meat.hpp \
+		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_core_meat.hpp \
 		/usr/local/include/armadillo_bits/eglue_core_meat.hpp \
 		/usr/local/include/armadillo_bits/cond_rel_meat.hpp \
@@ -1576,6 +1627,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/diagview_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_each_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_meat.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_meat.hpp \
 		/usr/local/include/armadillo_bits/SpValProxy_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_iterators_meat.hpp \
@@ -1607,6 +1659,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/op_strans_meat.hpp \
 		/usr/local/include/armadillo_bits/op_var_meat.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_meat.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_meat.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_meat.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_meat.hpp \
 		/usr/local/include/armadillo_bits/op_resize_meat.hpp \
@@ -1618,6 +1671,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/op_pinv_meat.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_meat.hpp \
 		/usr/local/include/armadillo_bits/op_flip_meat.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_meat.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_meat.hpp \
 		/usr/local/include/armadillo_bits/op_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_meat.hpp \
@@ -1645,6 +1699,9 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/op_sqrtmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_range_meat.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_roots_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_meat.hpp \
@@ -1667,6 +1724,7 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/glue_polyval_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_meat.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_meat.hpp \
@@ -1681,10 +1739,14 @@ sphericalharmonicoscillator.o: ../Project1/sphericalharmonicoscillator.cpp ../Pr
 		/usr/local/include/armadillo_bits/spop_var_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_meat.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_meat.hpp \
 		/usr/local/include/armadillo_bits/newarp_cx_attrib.hpp \
 		/usr/local/include/armadillo_bits/newarp_SortEigenvalue.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp \
@@ -1807,6 +1869,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/diagview_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_each_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_bones.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_bones.hpp \
 		/usr/local/include/armadillo_bits/diskio_bones.hpp \
 		/usr/local/include/armadillo_bits/wall_clock_bones.hpp \
 		/usr/local/include/armadillo_bits/running_stat_bones.hpp \
@@ -1849,6 +1912,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_strans_bones.hpp \
 		/usr/local/include/armadillo_bits/op_var_bones.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_bones.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_bones.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_bones.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_bones.hpp \
 		/usr/local/include/armadillo_bits/op_resize_bones.hpp \
@@ -1860,6 +1924,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_pinv_bones.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_bones.hpp \
 		/usr/local/include/armadillo_bits/op_flip_bones.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_bones.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_bones.hpp \
 		/usr/local/include/armadillo_bits/op_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_bones.hpp \
@@ -1887,6 +1952,9 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_sqrtmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_range_bones.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_roots_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_bones.hpp \
@@ -1909,6 +1977,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/glue_polyval_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_bones.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_bones.hpp \
@@ -1923,10 +1992,14 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/spop_var_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_bones.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_EigsSelect.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp \
@@ -1947,27 +2020,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/SpProxy.hpp \
 		/usr/local/include/armadillo_bits/diagmat_proxy.hpp \
 		/usr/local/include/armadillo_bits/strip.hpp \
-		/usr/local/include/armadillo_bits/Op_meat.hpp \
-		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/Glue_meat.hpp \
-		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_aux.hpp \
-		/usr/local/include/armadillo_bits/eOp_meat.hpp \
-		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/Base_meat.hpp \
-		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
-		/usr/local/include/armadillo_bits/Gen_meat.hpp \
-		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_bones.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_meat.hpp \
 		/usr/local/include/armadillo_bits/fn_n_unique.hpp \
@@ -2029,6 +2082,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_svd.hpp \
 		/usr/local/include/armadillo_bits/fn_solve.hpp \
 		/usr/local/include/armadillo_bits/fn_repmat.hpp \
+		/usr/local/include/armadillo_bits/fn_repelem.hpp \
 		/usr/local/include/armadillo_bits/fn_reshape.hpp \
 		/usr/local/include/armadillo_bits/fn_vectorise.hpp \
 		/usr/local/include/armadillo_bits/fn_resize.hpp \
@@ -2042,6 +2096,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_rank.hpp \
 		/usr/local/include/armadillo_bits/fn_kron.hpp \
 		/usr/local/include/armadillo_bits/fn_flip.hpp \
+		/usr/local/include/armadillo_bits/fn_reverse.hpp \
 		/usr/local/include/armadillo_bits/fn_as_scalar.hpp \
 		/usr/local/include/armadillo_bits/fn_princomp.hpp \
 		/usr/local/include/armadillo_bits/fn_cross.hpp \
@@ -2076,6 +2131,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_interp1.hpp \
 		/usr/local/include/armadillo_bits/fn_qz.hpp \
 		/usr/local/include/armadillo_bits/fn_diff.hpp \
+		/usr/local/include/armadillo_bits/fn_hess.hpp \
 		/usr/local/include/armadillo_bits/fn_schur.hpp \
 		/usr/local/include/armadillo_bits/fn_kmeans.hpp \
 		/usr/local/include/armadillo_bits/fn_sqrtmat.hpp \
@@ -2085,6 +2141,12 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_polyfit.hpp \
 		/usr/local/include/armadillo_bits/fn_polyval.hpp \
 		/usr/local/include/armadillo_bits/fn_intersect.hpp \
+		/usr/local/include/armadillo_bits/fn_normpdf.hpp \
+		/usr/local/include/armadillo_bits/fn_normcdf.hpp \
+		/usr/local/include/armadillo_bits/fn_mvnrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_chi2rnd.hpp \
+		/usr/local/include/armadillo_bits/fn_wishrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_roots.hpp \
 		/usr/local/include/armadillo_bits/fn_speye.hpp \
 		/usr/local/include/armadillo_bits/fn_spones.hpp \
 		/usr/local/include/armadillo_bits/fn_sprandn.hpp \
@@ -2095,11 +2157,33 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_svds.hpp \
 		/usr/local/include/armadillo_bits/hdf5_misc.hpp \
 		/usr/local/include/armadillo_bits/fft_engine.hpp \
+		/usr/local/include/armadillo_bits/band_helper.hpp \
+		/usr/local/include/armadillo_bits/sympd_helper.hpp \
 		/usr/local/include/armadillo_bits/mul_gemv.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm_mixed.hpp \
 		/usr/local/include/armadillo_bits/mul_syrk.hpp \
 		/usr/local/include/armadillo_bits/mul_herk.hpp \
+		/usr/local/include/armadillo_bits/Op_meat.hpp \
+		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/Glue_meat.hpp \
+		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eOp_meat.hpp \
+		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/Base_meat.hpp \
+		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
+		/usr/local/include/armadillo_bits/Gen_meat.hpp \
+		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_core_meat.hpp \
 		/usr/local/include/armadillo_bits/eglue_core_meat.hpp \
 		/usr/local/include/armadillo_bits/cond_rel_meat.hpp \
@@ -2125,6 +2209,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/diagview_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_each_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_meat.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_meat.hpp \
 		/usr/local/include/armadillo_bits/SpValProxy_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_iterators_meat.hpp \
@@ -2156,6 +2241,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_strans_meat.hpp \
 		/usr/local/include/armadillo_bits/op_var_meat.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_meat.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_meat.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_meat.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_meat.hpp \
 		/usr/local/include/armadillo_bits/op_resize_meat.hpp \
@@ -2167,6 +2253,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_pinv_meat.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_meat.hpp \
 		/usr/local/include/armadillo_bits/op_flip_meat.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_meat.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_meat.hpp \
 		/usr/local/include/armadillo_bits/op_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_meat.hpp \
@@ -2194,6 +2281,9 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_sqrtmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_range_meat.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_roots_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_meat.hpp \
@@ -2216,6 +2306,7 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/glue_polyval_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_meat.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_meat.hpp \
@@ -2230,10 +2321,14 @@ particle.o: ../Project1/particle.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/spop_var_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_meat.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_meat.hpp \
 		/usr/local/include/armadillo_bits/newarp_cx_attrib.hpp \
 		/usr/local/include/armadillo_bits/newarp_SortEigenvalue.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp \
@@ -2356,6 +2451,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/diagview_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_each_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_bones.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_bones.hpp \
 		/usr/local/include/armadillo_bits/diskio_bones.hpp \
 		/usr/local/include/armadillo_bits/wall_clock_bones.hpp \
 		/usr/local/include/armadillo_bits/running_stat_bones.hpp \
@@ -2398,6 +2494,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_strans_bones.hpp \
 		/usr/local/include/armadillo_bits/op_var_bones.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_bones.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_bones.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_bones.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_bones.hpp \
 		/usr/local/include/armadillo_bits/op_resize_bones.hpp \
@@ -2409,6 +2506,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_pinv_bones.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_bones.hpp \
 		/usr/local/include/armadillo_bits/op_flip_bones.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_bones.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_bones.hpp \
 		/usr/local/include/armadillo_bits/op_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_bones.hpp \
@@ -2436,6 +2534,9 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_sqrtmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_range_bones.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_roots_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_bones.hpp \
@@ -2458,6 +2559,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/glue_polyval_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_bones.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_bones.hpp \
@@ -2472,10 +2574,14 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/spop_var_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_bones.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_EigsSelect.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp \
@@ -2496,27 +2602,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/SpProxy.hpp \
 		/usr/local/include/armadillo_bits/diagmat_proxy.hpp \
 		/usr/local/include/armadillo_bits/strip.hpp \
-		/usr/local/include/armadillo_bits/Op_meat.hpp \
-		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/Glue_meat.hpp \
-		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_aux.hpp \
-		/usr/local/include/armadillo_bits/eOp_meat.hpp \
-		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/Base_meat.hpp \
-		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
-		/usr/local/include/armadillo_bits/Gen_meat.hpp \
-		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_bones.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_meat.hpp \
 		/usr/local/include/armadillo_bits/fn_n_unique.hpp \
@@ -2578,6 +2664,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_svd.hpp \
 		/usr/local/include/armadillo_bits/fn_solve.hpp \
 		/usr/local/include/armadillo_bits/fn_repmat.hpp \
+		/usr/local/include/armadillo_bits/fn_repelem.hpp \
 		/usr/local/include/armadillo_bits/fn_reshape.hpp \
 		/usr/local/include/armadillo_bits/fn_vectorise.hpp \
 		/usr/local/include/armadillo_bits/fn_resize.hpp \
@@ -2591,6 +2678,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_rank.hpp \
 		/usr/local/include/armadillo_bits/fn_kron.hpp \
 		/usr/local/include/armadillo_bits/fn_flip.hpp \
+		/usr/local/include/armadillo_bits/fn_reverse.hpp \
 		/usr/local/include/armadillo_bits/fn_as_scalar.hpp \
 		/usr/local/include/armadillo_bits/fn_princomp.hpp \
 		/usr/local/include/armadillo_bits/fn_cross.hpp \
@@ -2625,6 +2713,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_interp1.hpp \
 		/usr/local/include/armadillo_bits/fn_qz.hpp \
 		/usr/local/include/armadillo_bits/fn_diff.hpp \
+		/usr/local/include/armadillo_bits/fn_hess.hpp \
 		/usr/local/include/armadillo_bits/fn_schur.hpp \
 		/usr/local/include/armadillo_bits/fn_kmeans.hpp \
 		/usr/local/include/armadillo_bits/fn_sqrtmat.hpp \
@@ -2634,6 +2723,12 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_polyfit.hpp \
 		/usr/local/include/armadillo_bits/fn_polyval.hpp \
 		/usr/local/include/armadillo_bits/fn_intersect.hpp \
+		/usr/local/include/armadillo_bits/fn_normpdf.hpp \
+		/usr/local/include/armadillo_bits/fn_normcdf.hpp \
+		/usr/local/include/armadillo_bits/fn_mvnrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_chi2rnd.hpp \
+		/usr/local/include/armadillo_bits/fn_wishrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_roots.hpp \
 		/usr/local/include/armadillo_bits/fn_speye.hpp \
 		/usr/local/include/armadillo_bits/fn_spones.hpp \
 		/usr/local/include/armadillo_bits/fn_sprandn.hpp \
@@ -2644,11 +2739,33 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/fn_svds.hpp \
 		/usr/local/include/armadillo_bits/hdf5_misc.hpp \
 		/usr/local/include/armadillo_bits/fft_engine.hpp \
+		/usr/local/include/armadillo_bits/band_helper.hpp \
+		/usr/local/include/armadillo_bits/sympd_helper.hpp \
 		/usr/local/include/armadillo_bits/mul_gemv.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm_mixed.hpp \
 		/usr/local/include/armadillo_bits/mul_syrk.hpp \
 		/usr/local/include/armadillo_bits/mul_herk.hpp \
+		/usr/local/include/armadillo_bits/Op_meat.hpp \
+		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/Glue_meat.hpp \
+		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eOp_meat.hpp \
+		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/Base_meat.hpp \
+		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
+		/usr/local/include/armadillo_bits/Gen_meat.hpp \
+		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_core_meat.hpp \
 		/usr/local/include/armadillo_bits/eglue_core_meat.hpp \
 		/usr/local/include/armadillo_bits/cond_rel_meat.hpp \
@@ -2674,6 +2791,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/diagview_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_each_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_meat.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_meat.hpp \
 		/usr/local/include/armadillo_bits/SpValProxy_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_iterators_meat.hpp \
@@ -2705,6 +2823,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_strans_meat.hpp \
 		/usr/local/include/armadillo_bits/op_var_meat.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_meat.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_meat.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_meat.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_meat.hpp \
 		/usr/local/include/armadillo_bits/op_resize_meat.hpp \
@@ -2716,6 +2835,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_pinv_meat.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_meat.hpp \
 		/usr/local/include/armadillo_bits/op_flip_meat.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_meat.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_meat.hpp \
 		/usr/local/include/armadillo_bits/op_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_meat.hpp \
@@ -2743,6 +2863,9 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/op_sqrtmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_range_meat.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_roots_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_meat.hpp \
@@ -2765,6 +2888,7 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/glue_polyval_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_meat.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_meat.hpp \
@@ -2779,10 +2903,14 @@ wavefunction.o: ../Project1/wavefunction.cpp ../Project1/particle.h \
 		/usr/local/include/armadillo_bits/spop_var_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_meat.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_meat.hpp \
 		/usr/local/include/armadillo_bits/newarp_cx_attrib.hpp \
 		/usr/local/include/armadillo_bits/newarp_SortEigenvalue.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp \
@@ -2908,6 +3036,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/diagview_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_each_bones.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_bones.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_bones.hpp \
 		/usr/local/include/armadillo_bits/diskio_bones.hpp \
 		/usr/local/include/armadillo_bits/wall_clock_bones.hpp \
 		/usr/local/include/armadillo_bits/running_stat_bones.hpp \
@@ -2950,6 +3079,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/op_strans_bones.hpp \
 		/usr/local/include/armadillo_bits/op_var_bones.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_bones.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_bones.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_bones.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_bones.hpp \
 		/usr/local/include/armadillo_bits/op_resize_bones.hpp \
@@ -2961,6 +3091,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/op_pinv_bones.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_bones.hpp \
 		/usr/local/include/armadillo_bits/op_flip_bones.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_bones.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_bones.hpp \
 		/usr/local/include/armadillo_bits/op_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_bones.hpp \
@@ -2988,6 +3119,9 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/op_sqrtmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_bones.hpp \
 		/usr/local/include/armadillo_bits/op_range_bones.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_bones.hpp \
+		/usr/local/include/armadillo_bits/op_roots_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_bones.hpp \
@@ -3010,6 +3144,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/glue_polyval_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_bones.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_bones.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_bones.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_bones.hpp \
@@ -3024,10 +3159,14 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/spop_var_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_bones.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_bones.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_bones.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_bones.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_EigsSelect.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp \
 		/usr/local/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp \
@@ -3048,27 +3187,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/SpProxy.hpp \
 		/usr/local/include/armadillo_bits/diagmat_proxy.hpp \
 		/usr/local/include/armadillo_bits/strip.hpp \
-		/usr/local/include/armadillo_bits/Op_meat.hpp \
-		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
-		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
-		/usr/local/include/armadillo_bits/Glue_meat.hpp \
-		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_aux.hpp \
-		/usr/local/include/armadillo_bits/eOp_meat.hpp \
-		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
-		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
-		/usr/local/include/armadillo_bits/Base_meat.hpp \
-		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
-		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
-		/usr/local/include/armadillo_bits/Gen_meat.hpp \
-		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_bones.hpp \
 		/usr/local/include/armadillo_bits/arma_ostream_meat.hpp \
 		/usr/local/include/armadillo_bits/fn_n_unique.hpp \
@@ -3130,6 +3249,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/fn_svd.hpp \
 		/usr/local/include/armadillo_bits/fn_solve.hpp \
 		/usr/local/include/armadillo_bits/fn_repmat.hpp \
+		/usr/local/include/armadillo_bits/fn_repelem.hpp \
 		/usr/local/include/armadillo_bits/fn_reshape.hpp \
 		/usr/local/include/armadillo_bits/fn_vectorise.hpp \
 		/usr/local/include/armadillo_bits/fn_resize.hpp \
@@ -3143,6 +3263,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/fn_rank.hpp \
 		/usr/local/include/armadillo_bits/fn_kron.hpp \
 		/usr/local/include/armadillo_bits/fn_flip.hpp \
+		/usr/local/include/armadillo_bits/fn_reverse.hpp \
 		/usr/local/include/armadillo_bits/fn_as_scalar.hpp \
 		/usr/local/include/armadillo_bits/fn_princomp.hpp \
 		/usr/local/include/armadillo_bits/fn_cross.hpp \
@@ -3177,6 +3298,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/fn_interp1.hpp \
 		/usr/local/include/armadillo_bits/fn_qz.hpp \
 		/usr/local/include/armadillo_bits/fn_diff.hpp \
+		/usr/local/include/armadillo_bits/fn_hess.hpp \
 		/usr/local/include/armadillo_bits/fn_schur.hpp \
 		/usr/local/include/armadillo_bits/fn_kmeans.hpp \
 		/usr/local/include/armadillo_bits/fn_sqrtmat.hpp \
@@ -3186,6 +3308,12 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/fn_polyfit.hpp \
 		/usr/local/include/armadillo_bits/fn_polyval.hpp \
 		/usr/local/include/armadillo_bits/fn_intersect.hpp \
+		/usr/local/include/armadillo_bits/fn_normpdf.hpp \
+		/usr/local/include/armadillo_bits/fn_normcdf.hpp \
+		/usr/local/include/armadillo_bits/fn_mvnrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_chi2rnd.hpp \
+		/usr/local/include/armadillo_bits/fn_wishrnd.hpp \
+		/usr/local/include/armadillo_bits/fn_roots.hpp \
 		/usr/local/include/armadillo_bits/fn_speye.hpp \
 		/usr/local/include/armadillo_bits/fn_spones.hpp \
 		/usr/local/include/armadillo_bits/fn_sprandn.hpp \
@@ -3196,11 +3324,33 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/fn_svds.hpp \
 		/usr/local/include/armadillo_bits/hdf5_misc.hpp \
 		/usr/local/include/armadillo_bits/fft_engine.hpp \
+		/usr/local/include/armadillo_bits/band_helper.hpp \
+		/usr/local/include/armadillo_bits/sympd_helper.hpp \
 		/usr/local/include/armadillo_bits/mul_gemv.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm.hpp \
 		/usr/local/include/armadillo_bits/mul_gemm_mixed.hpp \
 		/usr/local/include/armadillo_bits/mul_syrk.hpp \
 		/usr/local/include/armadillo_bits/mul_herk.hpp \
+		/usr/local/include/armadillo_bits/Op_meat.hpp \
+		/usr/local/include/armadillo_bits/OpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOp_meat.hpp \
+		/usr/local/include/armadillo_bits/mtOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtSpOp_meat.hpp \
+		/usr/local/include/armadillo_bits/Glue_meat.hpp \
+		/usr/local/include/armadillo_bits/GlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eOp_meat.hpp \
+		/usr/local/include/armadillo_bits/eOpCube_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/eGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlue_meat.hpp \
+		/usr/local/include/armadillo_bits/mtGlueCube_meat.hpp \
+		/usr/local/include/armadillo_bits/Base_meat.hpp \
+		/usr/local/include/armadillo_bits/BaseCube_meat.hpp \
+		/usr/local/include/armadillo_bits/SpBase_meat.hpp \
+		/usr/local/include/armadillo_bits/Gen_meat.hpp \
+		/usr/local/include/armadillo_bits/GenCube_meat.hpp \
 		/usr/local/include/armadillo_bits/eop_core_meat.hpp \
 		/usr/local/include/armadillo_bits/eglue_core_meat.hpp \
 		/usr/local/include/armadillo_bits/cond_rel_meat.hpp \
@@ -3226,6 +3376,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/diagview_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_each_meat.hpp \
 		/usr/local/include/armadillo_bits/subview_cube_each_meat.hpp \
+		/usr/local/include/armadillo_bits/subview_cube_slices_meat.hpp \
 		/usr/local/include/armadillo_bits/SpValProxy_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_meat.hpp \
 		/usr/local/include/armadillo_bits/SpMat_iterators_meat.hpp \
@@ -3257,6 +3408,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/op_strans_meat.hpp \
 		/usr/local/include/armadillo_bits/op_var_meat.hpp \
 		/usr/local/include/armadillo_bits/op_repmat_meat.hpp \
+		/usr/local/include/armadillo_bits/op_repelem_meat.hpp \
 		/usr/local/include/armadillo_bits/op_reshape_meat.hpp \
 		/usr/local/include/armadillo_bits/op_vectorise_meat.hpp \
 		/usr/local/include/armadillo_bits/op_resize_meat.hpp \
@@ -3268,6 +3420,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/op_pinv_meat.hpp \
 		/usr/local/include/armadillo_bits/op_dotext_meat.hpp \
 		/usr/local/include/armadillo_bits/op_flip_meat.hpp \
+		/usr/local/include/armadillo_bits/op_reverse_meat.hpp \
 		/usr/local/include/armadillo_bits/op_princomp_meat.hpp \
 		/usr/local/include/armadillo_bits/op_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/op_orth_null_meat.hpp \
@@ -3295,6 +3448,9 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/op_sqrtmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_logmat_meat.hpp \
 		/usr/local/include/armadillo_bits/op_range_meat.hpp \
+		/usr/local/include/armadillo_bits/op_chi2rnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_wishrnd_meat.hpp \
+		/usr/local/include/armadillo_bits/op_roots_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_mixed_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_cov_meat.hpp \
@@ -3317,6 +3473,7 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/glue_polyval_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_intersect_meat.hpp \
 		/usr/local/include/armadillo_bits/glue_affmul_meat.hpp \
+		/usr/local/include/armadillo_bits/glue_mvnrnd_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_misc_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_diag_meat.hpp \
 		/usr/local/include/armadillo_bits/gmm_full_meat.hpp \
@@ -3331,10 +3488,14 @@ harmonicoscillator.o: ../Project1/harmonicoscillator.cpp ../Project1/harmonicosc
 		/usr/local/include/armadillo_bits/spop_var_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_trimat_meat.hpp \
 		/usr/local/include/armadillo_bits/spop_symmat_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_normalise_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_reverse_meat.hpp \
+		/usr/local/include/armadillo_bits/spop_repmat_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_plus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_minus_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_times_meat.hpp \
 		/usr/local/include/armadillo_bits/spglue_join_meat.hpp \
+		/usr/local/include/armadillo_bits/spglue_kron_meat.hpp \
 		/usr/local/include/armadillo_bits/newarp_cx_attrib.hpp \
 		/usr/local/include/armadillo_bits/newarp_SortEigenvalue.hpp \
 		/usr/local/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp \

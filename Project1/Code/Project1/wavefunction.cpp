@@ -10,17 +10,17 @@ Wavefunction::Wavefunction() {
 
 }
 
-Particle Wavefunction::getParticle(int particleNumber) {
-    return particles.at(particleNumber);
+Particle * Wavefunction::getParticle(int particleNumber) {
+    Particle * p = &particles.at(particleNumber);
+    return p;
+    //return particles.at(particleNumber);
 }
 
 void Wavefunction::setParticles() {
     vector<Particle> temp(numberOfParticles);
-	std::default_random_engine generator;
-	std::uniform_real_distribution<double> distribution(-1.0, 1.0);
     for (int i = 0; i < numberOfParticles; i++) {
         vec position(dimension);
-        position.randu();
+        position.randn();
 		temp[i].setPosition(position);
 	}
     particles = temp;

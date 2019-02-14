@@ -3,6 +3,8 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+QMAKE_MAC_SDK=macosx10.14
+
 INCLUDEPATH += /usr/local/include
 LIBS += -L/usr/local/lib
 

@@ -16,7 +16,7 @@ void HarmonicOscillator::set_alpha(double alpha_){
     alpha = alpha_;
 }
 double HarmonicOscillator::g(int i){
-    vec x = this->getParticle(i).getPosition();
+    vec x = this->getParticle(i)->getPosition();
     if(dimension == 3){
         return exp(-alpha*(x[0]*x[0] + x[1]*x[1] + beta*x[2]*x[2]));
     }

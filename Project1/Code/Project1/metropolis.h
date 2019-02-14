@@ -12,13 +12,17 @@ template <class T>
 class Metropolis
 {
 public:
-    Metropolis(T PDF_){PDF = PDF_;}
+    Metropolis(T PDF_){
+        PDF = PDF_;
+        n = PDF.getNumberOfParticles();
+        dimension = PDF.getDimension();
+    }
     double bruteForceStep(double step);
     vec bruteForceSolve(double step, int iterations);
     T PDF;
     double p1;
-    int n = PDF.getNumberOfParticles();
-    int dimension = PDF.getDimension();
+    int n;
+    int dimension;
 };
 
 
@@ -26,23 +30,26 @@ template <class T>
 double Metropolis<T>::bruteForceStep(double step){
     mat r_n(dimension,n);
     r_n.randu();
+    r_n -= 0.5;
     r_n = r_n*step;
     double Aij = randu();
     for(int i = 0; i < n; i++){
-        PDF.getParticle(i).changePosition(r_n.col(i));
+        PDF.getParticle(i)->changePosition(r_n.col(i));
     }
     double p2 = PDF.PDF();
     if(Aij <= p2/p1){
         p1 = p2;
-        return p2*PDF.localEnergy();
+        return PDF.localEnergy();
+
 
     }
     else{
         for(int i = 0; i < n; i++){
             r_n = - r_n;
-            PDF.getParticle(i).changePosition(r_n.col(i));
+            PDF.getParticle(i)->changePosition(r_n.col(i));
         }
-        return p1*PDF.localEnergy();
+        return PDF.localEnergy();
+
 
     }
 }
