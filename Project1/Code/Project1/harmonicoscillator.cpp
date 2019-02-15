@@ -48,3 +48,22 @@ double HarmonicOscillator::PDF(){
 double HarmonicOscillator::f(int particleOne, int particleTwo){
     return 0.5;
 }
+
+double HarmonicOscillator::L1norm(int i, int j){
+    return norm(this->getParticle(i)->getPosition() - this->getParticle(j)->getPosition(), 1);
+}
+
+double HarmonicOscillator::V_int(double L1norm){
+    if(L1norm > a){
+        return 0;
+    }
+}
+
+double HarmonicOscillator::f(double L1norm){
+    if(L1norm > a){
+        return 1-(a/L1norm);
+    }
+    else {
+        return 0;
+    }
+}

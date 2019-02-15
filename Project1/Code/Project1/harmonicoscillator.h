@@ -6,15 +6,18 @@
 class HarmonicOscillator : public Wavefunction
 {
 public:
-    HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_);
+    HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_, vec getPosition);
     void set_alpha(double alpha_);
     double g(int particleNumber);
     double f(int particleOne, int particleTwo);
     double harmonicWavefunction();
     double PDF();
+    double L1norm(int i, int j);
+    double V_int(double L1norm);
+    double f(double L1norm);
+
 
 
 private:
     double a, alpha, beta, gamma;
 };
-
