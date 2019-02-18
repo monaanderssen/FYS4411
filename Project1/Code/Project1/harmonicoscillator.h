@@ -6,7 +6,7 @@
 class HarmonicOscillator : public Wavefunction
 {
 public:
-    HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_, vec getPosition);
+    HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_);
     void set_alpha(double alpha_);
     double g(int particleNumber);
     double f(int particleOne, int particleTwo);
