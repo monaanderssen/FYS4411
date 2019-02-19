@@ -47,3 +47,25 @@ double SphericalHarmonicOscillator::PDF(){
     double x = harmonicOscillatorWavefunction();
     return x*x;
 }
+
+
+double SphericalHarmonicOscillator::localEnergyNumericalDerivative() {
+	double dx = 0.001;
+	double dx2 = dx * dx;
+	double sum = 0.0;
+	int dimentions = this->getDimension();
+	int N = this->getNumberOfParticles();
+	for (int i = 0; i < N; i++) {
+		vec temp = this->getParticle(i)->getPosition();
+		double r2i = dot(temp, temp);
+		double tempSum = 0.0;
+		for (int j = 0; j < dimentions; j++) {
+			double positionElement = 2 * temp[j] * dx;
+			double diferential = exp(-alpha * (positionElement + dx2)) + exp(-alpha * (dx2 - positionElement)) - 2;
+			tempSum += diferential;
+		}
+		sum += r2i * omegaHo*omegaHo / 2;
+		sum -= tempSum / (2*dx2);
+	}
+	return sum;
+}

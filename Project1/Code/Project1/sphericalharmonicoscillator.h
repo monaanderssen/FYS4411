@@ -12,6 +12,7 @@ public:
     double harmonicOscillatorWavefunction();
 	double localEnergy();
     double PDF();
+	double localEnergyNumericalDerivative(); 
 private:
 	double alpha;
     double omegaHo;
