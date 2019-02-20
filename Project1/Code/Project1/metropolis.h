@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <random>
 #include <armadillo>
+#include <iostream>
+#include <fstream>
 
 using namespace arma;
 using namespace std;
@@ -19,6 +21,7 @@ public:
     }
     double bruteForceStep(double step);
     vec bruteForceSolve(double step, int iterations);
+	void bruteForceTofile(double step, int iterations); //runs over diferent values of alpha
     T PDF;
     double p1;
     int n;
@@ -71,3 +74,24 @@ vec Metropolis<T>::bruteForceSolve(double step, int iterations){
     ret(1) = E2 - E*E;
     return ret;
 }
+
+template <class T>
+void Metropolis<T>::bruteForceTofile(double step, int iterations) {
+	string fileName;
+	fileName += "MetropolisSphericalHarmonicsStep" + to_string(step) + "Iterations" + to_string(iterations) + ".txt";
+	ofstream myFile;
+	myFile.open(fileName);
+	double startAlpha = 0.1;
+	double alphaStep = 0.01;
+	for (int i = 0; i < 100 ; i++) {
+		double tempAlpha = i * alphaStep + startAlpha;
+		PDF.setAlpha(tempAlpha);
+		vec out = bruteForceSolve(step, iterations);
+		myFile << tempAlpha << " " << out(0) << " " << out(1) << endl;// " " << E(1) / sqrt(iterations) << endl;
+	}
+	myFile.close();
+}
+
+
+
+
