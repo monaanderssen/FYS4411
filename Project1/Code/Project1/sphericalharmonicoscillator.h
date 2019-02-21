@@ -10,13 +10,15 @@ public:
 	void setPsi();
 	void setAlpha(double alpha) { this->alpha = alpha; }
     double harmonicOscillatorWavefunction();
-	double localEnergy();
+	double localEnergyAnalytical();
     double PDF();
 	double localEnergyNumericalDerivative(); 
+	vec driftForce(int i); //return drift force for particle i
+	double localEnergy();
 private:
 	double alpha;
     double omegaHo;
-
+	bool analytical = true;
 };
 
 
