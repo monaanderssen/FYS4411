@@ -9,6 +9,7 @@ public:
 	void setomegaHo(double omegaHo) { this->omegaHo = omegaHo; }
 	void setPsi();
 	void setAlpha(double alpha) { this->alpha = alpha; }
+	void setAnalytical(bool analytical) { this->analytical = analytical; }
     double harmonicOscillatorWavefunction();
 	double localEnergyAnalytical();
     double PDF();
