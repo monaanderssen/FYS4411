@@ -86,3 +86,29 @@ double SphericalHarmonicOscillator::localEnergy() {
 		return localEnergyNumericalDerivative();
 	}
 }
+
+mat SphericalHarmonicOscillator::changeInPosition(double timeStep) { //find new-old
+	int n = getNumberOfParticles();
+	int D = getDimension();
+	mat y(D, n); //realy y-x in equations
+	y.randn();
+	y *= sqrt(timeStep);
+	for (int i = 0; i < n; i++) {
+		y.col(i) += driftForce(i)*timeStep/2;
+	}
+	return y;
+}
+
+double SphericalHarmonicOscillator::G(mat positionChange, double timeStep) {
+	double pi = 3.14159265;
+	int n = getNumberOfParticles();
+	double divisor = pow( (4 * pi * 0.5 * timeStep),3.0*n/2);
+	double exponentDivisor = 4 * 0.5*timeStep;
+	double sum = 0.0;
+	for (int i = 0; i < n; i++) {
+		vec temp = positionChange.col(i) - driftForce(i)*timeStep / 2;
+		sum += dot(temp, temp);
+	}
+	double outPut = exp(-sum / exponentDivisor) / divisor;
+	return outPut;
+}

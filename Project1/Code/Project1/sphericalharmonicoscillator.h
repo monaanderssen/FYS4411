@@ -16,6 +16,8 @@ public:
 	double localEnergyNumericalDerivative(); 
 	vec driftForce(int i); //return drift force for particle i
 	double localEnergy();
+	mat changeInPosition(double timeStep); //gives the change of position, don't change the wavefunction.
+	double G(mat positionChange, double timeStep);
 private:
 	double alpha;
     double omegaHo;

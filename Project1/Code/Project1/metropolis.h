@@ -22,6 +22,8 @@ public:
     double bruteForceStep(double step);
     vec bruteForceSolve(double step, int iterations);
 	void bruteForceTofile(double step, int iterations); //runs over diferent values of alpha
+	double importantSamplingStep(double timeStep);
+	vec importantSamplingSolve(double timeStep, int iterations);
     T PDF;
     double p1;
     int n;
@@ -78,7 +80,7 @@ vec Metropolis<T>::bruteForceSolve(double step, int iterations){
 template <class T>
 void Metropolis<T>::bruteForceTofile(double step, int iterations) {
 	string fileName;
-	fileName += "MetropolisSphericalHarmonicsStep" + to_string(step) + "Iterations" + to_string(iterations) + ".txt";
+	fileName += "BfMcDim" + to_string(dimension)+ "Npart"+to_string(n) + "Iter" + to_string(iterations) + ".txt";
 	ofstream myFile;
 	myFile.open(fileName);
 	double startAlpha = 0.1;
@@ -93,5 +95,46 @@ void Metropolis<T>::bruteForceTofile(double step, int iterations) {
 }
 
 
+template <class T>
+double Metropolis<T>::importantSamplingStep(double timeStep) {
+	mat positionChanges(dimension, n);
+	positionChanges = PDF.changeInPosition(timeStep);
+	double Aij = randu();
+	double G1 = PDF.G(positionChanges, timeStep);
+	for (int i = 0; i < n; i++) {
+		PDF.getParticle(i)->changePosition(positionChanges.col(i));
+	}
+	double p2 = PDF.PDF();
+	double G2 = PDF.G(-positionChanges, timeStep);
+	double divident = G2 * p2;
+	double divisor = G1 * p1;
+	if (Aij <= divident / divisor) {
+		p1 = p2;
+		return PDF.localEnergy();
+	}
+	else {
+		for (int i = 0; i < n; i++) {
+			PDF.getParticle(i)->changePosition(-positionChanges.col(i));
+		}
+		return PDF.localEnergy();
+	}
+}
 
-
+template<class T> 
+vec Metropolis<T>::importantSamplingSolve(double timeStep, int iterations) {
+	p1 = PDF.PDF();
+	vec ret(2);
+	double E2 = 0;
+	double E = 0;
+	double importantStep;
+	for (int i = 0; i < iterations; i++) {
+		importantStep = importantSamplingStep(timeStep);
+		E += importantStep;
+		E2 += importantStep * importantStep;
+	}
+	E /= iterations;
+	E2 /= iterations;
+	ret(0) = E;
+	ret(1) = E2 - E * E;
+	return ret;
+}
