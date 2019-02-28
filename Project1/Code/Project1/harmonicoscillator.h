@@ -11,11 +11,11 @@ public:
     double g(int particleNumber);
     double harmonicWavefunction();
     double PDF();
-    double norm(int i, int j);
-    double V_int(double norm);
-    double f(double norm);
-    double uDerivative(double norm);
-    double uDoubleDerivative(double norm);
+    double Norm(int i, int j);
+    double V_int(double Norm);
+    double f(double Norm);
+    double uDerivative(double Norm);
+    double uDoubleDerivative(double Norm);
     vec gradientPhi(int i);
     double doubleGradientPhi(int i);
     double laplacianPsiOverPsi(int k);
