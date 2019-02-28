@@ -45,10 +45,6 @@ double HarmonicOscillator::PDF(){
     return x*x;
 }
 
-double HarmonicOscillator::f(int particleOne, int particleTwo){
-    return 0.5;
-}
-
 double HarmonicOscillator::L1norm(int i, int j){
     return norm(this->getParticle(i)->getPosition() - this->getParticle(j)->getPosition(), 2);
 }
@@ -144,14 +140,26 @@ double HarmonicOscillator::psi(){
     for (int i = 0;i <numberOfParticles;i++) {
         vec r_i = this->getParticle(i)->getPosition();
         sum += (r_i(0)*r_i(0) + r_i(1)*r_i(1) + r_i(2)*r_i(2)*beta);
-        for(int j;j<i; j++){
-            sum2 *= f(i,j);
+        for(int j=0;j<i; j++){
+            sum2 *= f(L1norm(i,j));
         }
     }
     return exp(-alpha*sum)*sum2;
 }
 
+double HarmonicOscillator::localEnergy(){
+    double sum = 0;
+    double sum2 = 0;
 
+    for(int i = 0; i<numberOfParticles; i++){
+        vec r_i = this->getParticle(i)->getPosition();
+        sum += r_i(0)*r_i(0) + r_i(1)*r_i(1) + r_i(2)*r_i(2)*gamma - laplacianPsiOverPsi(i);
+        for (int j = 0;j<i;j++) {
+            sum2 += V_int(L1norm(j, i));
+        }
+    }
+    return 0.5*sum + sum2;
+}
 
 
 
