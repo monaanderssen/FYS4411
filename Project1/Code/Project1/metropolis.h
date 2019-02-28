@@ -24,6 +24,7 @@ public:
 	void bruteForceTofile(double step, int iterations); //runs over diferent values of alpha
 	double importantSamplingStep(double timeStep);
 	vec importantSamplingSolve(double timeStep, int iterations);
+	void importantSamplingToFile(double timeStep, int inerations);
     T PDF;
     double p1;
     int n;
@@ -137,4 +138,21 @@ vec Metropolis<T>::importantSamplingSolve(double timeStep, int iterations) {
 	ret(0) = E;
 	ret(1) = E2 - E * E;
 	return ret;
+}
+
+template<class T>
+void Metropolis<T>::importantSamplingToFile(double timeStep, int iterations) {
+	string fileName;
+	fileName += "BfImporttimStep"+ to_string(timeStep)+"Dim" + to_string(dimension) + "Npart" + to_string(n) + "Iter" + to_string(iterations) + ".txt";
+	ofstream myFile;
+	myFile.open(fileName);
+	double startAlpha = 0.1;
+	double alphaStep = 0.01;
+	for (int i = 0; i < 100; i++) {
+		double tempAlpha = i * alphaStep + startAlpha;
+		PDF.setAlpha(tempAlpha);
+		vec out = importantSamplingSolve(timeStep, iterations);
+		myFile << tempAlpha << " " << out(0) << " " << out(1) << endl;// " " << E(1) / sqrt(iterations) << endl;
+	}
+	myFile.close();
 }
