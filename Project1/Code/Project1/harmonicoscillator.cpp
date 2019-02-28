@@ -53,6 +53,7 @@ double HarmonicOscillator::L1norm(int i, int j){
     return norm(this->getParticle(i)->getPosition() - this->getParticle(j)->getPosition(), 1);
 }
 
+
 double HarmonicOscillator::V_int(double L1norm){
     if(L1norm > a){
         return 0;
@@ -66,4 +67,32 @@ double HarmonicOscillator::f(double L1norm){
     else {
         return 0;
     }
+}
+
+double HarmonicOscillator::uDerivative(double L1norm){
+    if(L1norm > a){
+        return a/(L1norm*L1norm - a*L1norm);
+    }
+    else {
+        return 0;
+    }
+}
+
+double HarmonicOscillator::uDoubleDerivative(double L1norm){
+    if(L1norm > a){
+        return (a*a - 2*a*L1norm)/((L1norm*L1norm - a*L1norm)*(L1norm*L1norm - a*L1norm));
+    }
+    else {
+        return 0;
+    }
+}
+
+double HarmonicOscillator::gradient(int i){
+    vec r = this->getParticle(i)->getPosition();
+    return -2*alpha*(r(0) + r(1) + beta*r(2));
+}
+
+double HarmonicOscillator::doubleGradient(int i){
+    vec r = this->getParticle(i)->getPosition();
+    return -2*alpha*((2 + beta) -2*alpha*(r(0)*r(0) + r(1)*r(1) + beta*r(2)*r(2)));
 }
