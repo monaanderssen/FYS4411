@@ -50,7 +50,7 @@ double HarmonicOscillator::f(int particleOne, int particleTwo){
 }
 
 double HarmonicOscillator::L1norm(int i, int j){
-    return norm(this->getParticle(i)->getPosition() - this->getParticle(j)->getPosition(), 1);
+    return norm(this->getParticle(i)->getPosition() - this->getParticle(j)->getPosition(), 2);
 }
 
 
@@ -87,12 +87,78 @@ double HarmonicOscillator::uDoubleDerivative(double L1norm){
     }
 }
 
-double HarmonicOscillator::gradient(int i){
+vec HarmonicOscillator::gradientPhi(int i){
     vec r = this->getParticle(i)->getPosition();
-    return -2*alpha*(r(0) + r(1) + beta*r(2));
+    vec temp(3);
+    temp(0) = -2*alpha*(r(0));
+    temp(1) = -2*alpha*(r(1));
+    temp(2) = -2*alpha*(beta*r(2));
+    return temp;
 }
 
-double HarmonicOscillator::doubleGradient(int i){
+double HarmonicOscillator::doubleGradientPhi(int i){
     vec r = this->getParticle(i)->getPosition();
     return -2*alpha*((2 + beta) -2*alpha*(r(0)*r(0) + r(1)*r(1) + beta*r(2)*r(2)));
 }
+
+
+
+double HarmonicOscillator::laplacianPsiOverPsi(int k){
+    double sum = doubleGradientPhi(k);
+    vec r_k = this->getParticle(k)->getPosition();
+    for (int j=0; j <numberOfParticles;j++) {
+        if(j!=k){
+        vec r_j = this->getParticle(j)->getPosition();
+        double norm = L1norm(k,j);
+        sum += 2*dot(gradientPhi(k),r_k-r_j)*uDerivative(norm)/norm;
+        sum += (uDoubleDerivative(norm)+2*uDerivative(norm)/norm);
+        for (int i=0;i<numberOfParticles;i++) {
+            if(i !=k){
+            vec r_i = this->getParticle(i)->getPosition();
+            double norm2 = L1norm(i,k);
+            sum += dot(r_k-r_j,r_k-r_i)*uDerivative(norm)*uDerivative(norm2)/(norm*norm2);
+            }
+        }
+        }
+    }
+}
+
+
+vec HarmonicOscillator::driftForce(int k){
+    vec sum = zeros(3);
+    vec r_k = this->getParticle(k)->getPosition();
+    for (int j=0;j<numberOfParticles;j++) {
+        if(j != k){
+            vec r_j = this->getParticle(j)->getPosition();
+            double norm = L1norm(k,j);
+            sum+= (r_k-r_j)/norm *uDerivative(norm);
+        }
+    }
+    return 2*(sum + gradientPhi(k));
+}
+
+double HarmonicOscillator::psi(){
+    double sum = 0;
+    double sum2 = 1;
+
+    for (int i = 0;i <numberOfParticles;i++) {
+        vec r_i = this->getParticle(i)->getPosition();
+        sum += (r_i(0)*r_i(0) + r_i(1)*r_i(1) + r_i(2)*r_i(2)*beta);
+        for(int j;j<i; j++){
+            sum2 *= f(i,j);
+        }
+    }
+    return exp(-alpha*sum)*sum2;
+}
+
+
+
+
+
+
+
+
+
+
+
+

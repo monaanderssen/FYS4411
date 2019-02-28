@@ -17,9 +17,10 @@ public:
     double f(double L1norm);
     double uDerivative(double L1norm);
     double uDoubleDerivative(double L1norm);
-    double gradient(int i);
-    double doubleGradient(int i);
-
+    vec gradientPhi(int i);
+    double doubleGradientPhi(int i);
+    double laplacianPsiOverPsi(int k);
+    vec driftForce(int k);
 
 private:
     double a, alpha, beta, gamma;
