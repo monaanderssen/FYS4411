@@ -18,6 +18,7 @@ public:
 	double localEnergy();
 	mat changeInPosition(double timeStep); //gives the change of position, don't change the wavefunction.
 	double G(mat positionChange, double timeStep);
+	double AlphaDerivative();
 private:
 	double alpha;
     double omegaHo;

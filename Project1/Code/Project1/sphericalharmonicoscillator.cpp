@@ -112,3 +112,12 @@ double SphericalHarmonicOscillator::G(mat positionChange, double timeStep) {
 	double outPut = exp(-sum / exponentDivisor) / divisor;
 	return outPut;
 }
+
+double SphericalHarmonicOscillator::AlphaDerivative() {
+	double sum = 0.0;
+	for (int i = 0; i < numberOfParticles; i++) {
+		vec temp = getParticle(i)->getPosition();
+		sum += dot(temp, temp);
+	}
+	return -sum;
+}
