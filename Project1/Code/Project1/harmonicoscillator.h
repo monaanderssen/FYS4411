@@ -6,8 +6,9 @@
 class HarmonicOscillator : public Wavefunction
 {
 public:
+	HarmonicOscillator();
 	HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_);
-	void set_alpha(double alpha_);
+	void setAlpha(double alpha_);
 	double g(int particleNumber);
 	double harmonicWavefunction();
 	double PDF();

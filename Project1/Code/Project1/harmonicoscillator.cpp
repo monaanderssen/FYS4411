@@ -2,6 +2,10 @@
 #include "wavefunction.h"
 #include "particle.h"
 
+HarmonicOscillator::HarmonicOscillator() {
+
+}
+
 HarmonicOscillator::HarmonicOscillator(int dimensions, int numberOfParticles, double a_, double beta_, double gamma_)
 {
 	a = a_;
@@ -12,7 +16,7 @@ HarmonicOscillator::HarmonicOscillator(int dimensions, int numberOfParticles, do
 	this->setParticles();
 
 }
-void HarmonicOscillator::set_alpha(double alpha_) {
+void HarmonicOscillator::setAlpha(double alpha_) {
 	alpha = alpha_;
 }
 double HarmonicOscillator::g(int i) {
