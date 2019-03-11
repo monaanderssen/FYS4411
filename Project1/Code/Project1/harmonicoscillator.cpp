@@ -58,6 +58,9 @@ double HarmonicOscillator::V_int(double Norm) {
 	if (Norm > a) {
 		return 0;
 	}
+	else {
+		return pow(10, 20);
+	}
 }
 
 double HarmonicOscillator::f(double Norm) {
@@ -119,6 +122,7 @@ double HarmonicOscillator::laplacianPsiOverPsi(int k) {
 			}
 		}
 	}
+	return sum;
 }
 
 
@@ -162,10 +166,40 @@ double HarmonicOscillator::localEnergy() {
 	return 0.5*sum + sum2;
 }
 
+double HarmonicOscillator::AlphaDerivative() {
+	double sum = 0.0;
+	for (int i = 0; i < numberOfParticles; i++) {
+		vec temp = getParticle(i)->getPosition();
+		sum += (temp(0)*temp(0) + temp(1)*temp(1) + beta * temp(2)*temp(2));
+	}
+	return -1 * sum;
+}
 
+mat HarmonicOscillator::changeInPosition(double timeStep) { //this is aqtualy exactly the samme funktion as for sphericalHarm
+	int n = getNumberOfParticles();
+	int D = getDimension();
+	mat y(D, n); //realy y-x in equations
+	y.randn();
+	y *= sqrt(timeStep);
+	for (int i = 0; i < n; i++) {
+		y.col(i) += driftForce(i)*timeStep / 2;
+	}
+	return y;
+}
 
-
-
+double HarmonicOscillator::G(mat positionChange, double timeStep) {
+	double pi = 3.14159265; //fell free to extend
+	int n = getNumberOfParticles();
+	double divisor = pow((4 * pi * 0.5 * timeStep), 3.0*n / 2);
+	double exponentDivisor = 4 * 0.5*timeStep;
+	double sum = 0.0;
+	for (int i = 0; i < n; i++) {
+		vec temp = positionChange.col(i) - driftForce(i)*timeStep / 2;
+		sum += dot(temp, temp);
+	}
+	double outPut = exp(-sum / exponentDivisor) / divisor;
+	return outPut;
+}
 
 
 

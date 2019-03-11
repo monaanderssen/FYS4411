@@ -23,7 +23,9 @@ public:
 	vec driftForce(int k);
 	double psi();
 	double localEnergy();
-
+	double AlphaDerivative();
+	mat changeInPosition(double timeStep);
+	double G(mat positionChange, double timeStep);
 private:
 	double a, alpha, beta, gamma;
 };
