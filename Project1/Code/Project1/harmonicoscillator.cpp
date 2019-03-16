@@ -1,6 +1,7 @@
 #include "harmonicoscillator.h"
 #include "wavefunction.h"
 #include "particle.h"
+#include <limits>
 
 HarmonicOscillator::HarmonicOscillator() {
 
@@ -33,15 +34,16 @@ double HarmonicOscillator::g(int i) {
 }
 
 double HarmonicOscillator::harmonicWavefunction() {
-	double sum1 = 1;
-	double sum2 = 0;
+	double sum1 = 0;
+	double sum2 = 1;
 	for (int i = 0; i < numberOfParticles; i++) {
-		sum1 *= this->g(i);
+		vec temp = getParticle(i)->getPosition();
+		sum1 += (temp(0)*temp(0) + temp(1)*temp(1) +beta*temp(2)*temp(2));
 		for (int j = i + 1; j < numberOfParticles; j++) {
-			sum2 += log(f(Norm(i, j)));
+			sum2 *= (f(Norm(i, j)));
 		}
 	}
-	return sum1 * exp(sum2);
+	return exp(-alpha*sum1) * sum2;
 }
 
 double HarmonicOscillator::PDF() {
@@ -59,7 +61,7 @@ double HarmonicOscillator::V_int(double Norm) {
 		return 0;
 	}
 	else {
-		return pow(10, 20);
+		return std::numeric_limits<double>::max();
 	}
 }
 
@@ -158,7 +160,7 @@ double HarmonicOscillator::localEnergy() {
 
 	for (int i = 0; i<numberOfParticles; i++) {
 		vec r_i = this->getParticle(i)->getPosition();
-		sum += r_i(0)*r_i(0) + r_i(1)*r_i(1) + r_i(2)*r_i(2)*gamma - laplacianPsiOverPsi(i);
+		sum += r_i(0)*r_i(0) + r_i(1)*r_i(1) + r_i(2)*r_i(2)*gamma*gamma - laplacianPsiOverPsi(i);
 		for (int j = 0; j<i; j++) {
 			sum2 += V_int(Norm(j, i));
 		}
@@ -170,9 +172,9 @@ double HarmonicOscillator::AlphaDerivative() {
 	double sum = 0.0;
 	for (int i = 0; i < numberOfParticles; i++) {
 		vec temp = getParticle(i)->getPosition();
-		sum += (temp(0)*temp(0) + temp(1)*temp(1) + beta * temp(2)*temp(2));
+		sum += (temp(0)*temp(0) + temp(1)*temp(1) +  beta*temp(2)*temp(2));
 	}
-	return -1 * sum;
+	return -sum;
 }
 
 mat HarmonicOscillator::changeInPosition(double timeStep) { //this is aqtualy exactly the samme funktion as for sphericalHarm
