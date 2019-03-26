@@ -24,7 +24,7 @@ public:
     vec bruteForceSolve(double step, int iterations);
     void bruteForceTofile(double step, int iterations, int my_rank); //runs over diferent values of alpha
 	vec importantSamplingStep(double timeStep);
-	vec importantSamplingSolve(double timeStep, int iterations); //finds only localEnergy
+	vec importantSamplingSolve(double timeStep, int iterations); 
     void importantSamplingToFile(double timeStep, int inerations);
     vec dEnergy(double timeStep,int iterations); //returns a vector with energy and derivative of energy using importantSampling
     vec minimize(double timeStep,double startAlpha,double tol, double stepLength, int iterations=10000, int MAXITER=200); //finding minimum using stepest desent

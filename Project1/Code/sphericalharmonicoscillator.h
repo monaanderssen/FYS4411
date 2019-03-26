@@ -12,19 +12,19 @@ public:
 	void setAnalytical(bool analytical) { this->analytical = analytical; }
     void setParticleSpacing(double variance_ = 0.1){this->particleSpacing(variance_); }
     double harmonicOscillatorWavefunction();
-	double localEnergyAnalytical();
+	double localEnergyAnalytical(); //local energy with analytical derivatives
     double PDF();
-	double localEnergyNumericalDerivative(); 
+	double localEnergyNumericalDerivative(); //local energy with numerical derivatives
 	vec driftForce(int i); //return drift force for particle i
 	double localEnergy();
 	mat changeInPosition(double timeStep); //gives the change of position, don't change the wavefunction.
 	double G(mat positionChange, double timeStep);
-	double AlphaDerivative();
+	double AlphaDerivative(); //derivative of the wavefunction with respect to alpha 
     double alpha;
 private:
 
     double omegaHo;
-	bool analytical = true;
+	bool analytical = true; //desides if localEnergy uses numerical or analytical derivatives
 };
 
 
