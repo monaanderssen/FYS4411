@@ -1,20 +1,30 @@
-#pragma once
 #include "particle.h"
+#include "wavefunction.h"
+#include <vector>
+#include <random>
+#include <cmath>
 using std::vector;
 
-class Wavefunction : public Particle
-{
-public:
-    Wavefunction();
-    void setNumberOfParticles(int numberOfParticles) { this->numberOfParticles = numberOfParticles; }
-    void setParticles();
-    int getNumberOfParticles() { return numberOfParticles; }
-    void particleSpacing(double variance_);
-    Particle * getParticle(int particleNumber);
-    vector<Particle> getParticles() { return particles; }
-    int numberOfParticles;
-    double variance;
-private:
-    vector<Particle> particles;
 
-};
+Wavefunction::Wavefunction() {
+
+}
+
+Particle * Wavefunction::getParticle(int particleNumber) {
+    Particle * p = &particles.at(particleNumber);
+    return p;
+    //return particles.at(particleNumber);
+}
+
+void Wavefunction::setParticles() {
+    vector<Particle> temp(numberOfParticles);
+    for (int i = 0; i < numberOfParticles; i++) {
+        vec position(dimension);
+        position.randn();
+        position*= 0.1;
+        temp[i].setPosition(position);
+    }
+    particles = temp;
+}
+
+
