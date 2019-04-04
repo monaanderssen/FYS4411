@@ -9,8 +9,9 @@ class MLWavefunction : public Wavefunction
 public:
 	MLWavefunction();
 	~MLWavefunction();
-	MLWavefunction(int dimension, int numberOfParticles, int numberOfHidenModes);
+	MLWavefunction(int dimension, int numberOfParticles, int numberOfHidenModes, double sigma);
 	void setWeightsAndBiases();
+	double MLWave();
 private:
 	int M;  //number of visible/input variables numberOfParticles * dimension
 	int N;  //number of hiden variables
@@ -18,5 +19,6 @@ private:
 	vec b;
 	mat w;
 	double omega;
+	double sigma;
 };
 
