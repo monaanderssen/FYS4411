@@ -16,10 +16,9 @@ public:
 	double PDF();
 	double localEnergy();
 	double interactionTerm();
-	double derivativeLogPsiOverA(int i);
-	double derivativeLogPsioverB(int j);
-	double derivativeLogPsioverW(int i,int j);
-	double derivativeLogPsiOverAlpha(int i);
+	vec derivativeLogPsiOverA();
+	vec derivativeLogPsioverB();
+	mat derivativeLogPsioverW();
 private:
 	int M;  //number of visible/input variables numberOfParticles * dimension
 	int N;  //number of hiden variables

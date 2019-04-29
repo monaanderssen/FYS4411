@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include "metropolis.h"
+#include "MLwavefunction.h"
 using namespace std;
 
 int main()
