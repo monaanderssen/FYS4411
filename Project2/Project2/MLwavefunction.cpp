@@ -24,6 +24,17 @@ void MLWavefunction::setWeightsAndBiases() {
 	w = randu(M, N);
 }
 
+void MLWavefunction::setX() {
+	int counter = 0;
+	for (int i = 0; i < dimension; i++) {
+		vec temp = this->getParticle(i)->getPosition();
+		for (int j = 0; j < numberOfParticles; j++) {
+			x(counter) = temp(j);
+			counter++;
+		}
+	}
+}
+
 
 double MLWavefunction::MLWave() { //with out the partitionfunction 
 	double sum1 = norm(x - a);

@@ -11,6 +11,7 @@ public:
 	~MLWavefunction();
 	MLWavefunction(int dimension, int numberOfParticles, int numberOfHidenModes, double sigma);
 	void setWeightsAndBiases();
+	void setX();
 	double MLWave();
 	double PDF();
 	double localEnergy();
