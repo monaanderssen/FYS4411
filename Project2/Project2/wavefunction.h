@@ -1,5 +1,6 @@
 #pragma once
 #include "particle.h"
+#include <vector>
 using std::vector;
 
 class Wavefunction : public Particle
@@ -9,7 +10,7 @@ public:
     void setNumberOfParticles(int numberOfParticles) { this->numberOfParticles = numberOfParticles; }
     void setParticles();
     int getNumberOfParticles() { return numberOfParticles; }
-    void particleSpacing(double variance_);
+    //void particleSpacing(double variance_);
     Particle * getParticle(int particleNumber);
     vector<Particle> getParticles() { return particles; }
     int numberOfParticles;
