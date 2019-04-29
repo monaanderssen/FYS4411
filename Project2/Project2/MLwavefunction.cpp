@@ -76,26 +76,28 @@ double MLWavefunction::interactionTerm() { //not finished
 	return 0;
 }
 
-vec MLWavefunction::derivativeLogPsiOverA() {
-	return (x - a) / (sigma*sigma);
+double MLWavefunction::derivativeLogPsiOverA(int i) {
+	return (x(i) - a(i)) / (sigma*sigma);
 }
 
-vec MLWavefunction::derivativeLogPsioverB() {
-	vec out(N);
-	for (int i = 0; i < N; i++) {
-		double exponent = -b(i) - dot(x, w.col(i)) / (sigma*sigma);
-		out(i) = 1 / (1 + exp(exponent));
-	}
-	return out;
+double MLWavefunction::derivativeLogPsioverB(int j) {
+	double exponent = -b(j) - dot(x, w.col(j)) / (sigma*sigma);
+	return 1 / (1 + exp(exponent));
 }
 
-mat MLWavefunction::derivativeLogPsioverW() {
-	mat out(M, N);
-	for (int i = 0; i < M; i++) {
-		for (int j = 0; j < N; j++) {
-			double exponent = -b(j) - dot(x, w.col(j)) / (sigma*sigma);
-			out(i, j) = x(i) / ((1 + exp(exponent))*sigma*sigma);
-		}
+double MLWavefunction::derivativeLogPsioverW(int i, int j) {
+	double exponent = -b(j) - dot(x, w.col(j)) / (sigma*sigma);
+	return x(i) / ((1 + exp(exponent))*sigma*sigma);
+}
+
+double MLWavefunction::derivativeLogPsiOverAlpha(int i) {
+	if (i < M) {
+		return derivativeLogPsiOverA(i);
 	}
-	return out;
+	i -= M;
+	if (i < N) {
+		return derivativeLogPsioverB(i);
+	}
+	i -= N;
+	//finn resten
 }
