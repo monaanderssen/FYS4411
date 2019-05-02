@@ -16,19 +16,22 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 	this->numberOfParticles = numberOfParticles;
 	setParticles();
 	setWeightsAndBiases();
+	setX();
 }
 
 void MLWavefunction::setWeightsAndBiases() {
-	a = randu(M);
-	b = randu(N);
-	w = randu(M, N);
+	a = randn(M)*.1;
+	b = randn(N)*.1;
+	w = randn(M, N)*.1;
 }
 
 void MLWavefunction::setX() {
 	int counter = 0;
-	for (int i = 0; i < dimension; i++) {
+	x = zeros(M);
+	//cout << numberOfParticles << endl;
+	for (int i = 0; i < numberOfParticles; i++) {
 		vec temp = this->getParticle(i)->getPosition();
-		for (int j = 0; j < numberOfParticles; j++) {
+		for (int j = 0; j < dimension; j++) {
 			x(counter) = temp(j);
 			counter++;
 		}
@@ -43,7 +46,7 @@ double MLWavefunction::MLWave() { //with out the partitionfunction
 		double exponent = b(j) + dot(x, w.col(j))/(sigma*sigma);
 		product *= (1 + exp(exponent));
 	}
-	return product * exp(sum1*sum1 / (2 * sigma*sigma));
+	return product * exp(-sum1*sum1 / (2 * sigma*sigma));
 }
 
 double MLWavefunction::PDF() {
@@ -59,13 +62,13 @@ double MLWavefunction::localEnergy() {
 		for (int j = 0; j < N; j++) {
 			double exponent = b(j) + dot(x, w.col(j)) / (sigma*sigma);
 			double exponential = exp(exponent);
-			delsum1 += w(i, j)*(1 + exp(-exponent));
+			delsum1 += w(i, j)/(1 + exp(-exponent));
 			sum2 += w(i, j)*w(i, j)*exponential / ((1 + exponential)*(1 + exponential));
 		}
-		double temp=(x(i) - a(i) + delsum1);
+		double temp=(-x(i) + a(i) + delsum1);
 		sum1 += temp * temp;
 	}
-	double output = 0.5*(M - (sum1 + sum2) / (sigma*sigma)) / (sigma*sigma) + omega * dot(x, x);
+	double output = 0.5*((M - (sum1 + sum2) / (sigma*sigma)) / (sigma*sigma) + omega*omega * dot(x, x));
 	if (interaction) {
 		output += interactionTerm();
 	}
@@ -90,8 +93,8 @@ vec MLWavefunction::derivativeLogPsioverB() {
 }
 mat MLWavefunction::derivativeLogPsioverW() {
 	mat out(M, N);
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < N; j++) {
 			double exponent = -b(j) - dot(x, w.col(j)) / (sigma*sigma);
 			out(i,j)=x(i) / ((1 + exp(exponent))*sigma*sigma);
 		}

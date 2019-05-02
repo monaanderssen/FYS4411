@@ -28,7 +28,8 @@ public:
     void importantSamplingToFile(double timeStep, int inerations);
     vec dEnergy(double timeStep,int iterations); //returns a vector with energy and derivative of energy using importantSampling
     vec minimize(double timeStep,double startAlpha,double tol, double stepLength, int iterations=10000, int MAXITER=200); //finding minimum using stepest desent
-    T PDF;
+	vec SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER,int miniBachSize);
+	T PDF;
     double p1;
     int n;
     int dimension;
@@ -37,14 +38,14 @@ public:
 
 template <class T>
 double Metropolis<T>::bruteForceStep(double step){
-    mat r_n(dimension,n);
+    vec r_n(dimension*n);
     r_n.randn();
     r_n *= step;
     double Aij = randu();
-    for(int i = 0; i < n; i++){
-        PDF.getParticle(i)->changePosition(r_n.col(i));
-
-    }
+    //for(int i = 0; i < n; i++){
+        //PDF.getParticle(i)->changePosition(r_n.col(i));
+    //}
+	PDF.x += r_n;
     double p2 = PDF.PDF();
     if(Aij <= p2/p1){
         p1 = p2;
@@ -53,9 +54,10 @@ double Metropolis<T>::bruteForceStep(double step){
 
     }
     else{
-        for(int i = 0; i < n; i++){
-            PDF.getParticle(i)->changePosition(-r_n.col(i));
-        }
+        //for(int i = 0; i < n; i++){
+          //  PDF.getParticle(i)->changePosition(-r_n.col(i));
+        //}
+		PDF.x -= r_n;
         return PDF.localEnergy();
 
 
@@ -253,4 +255,61 @@ vec Metropolis<T>::minimize(double timeStep, double startAlpha, double tol, doub
     out(0) = -1;
     out(1) = MAXITER;
     return out;
+}
+
+template<class T>
+vec Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
+	p1 = PDF.PDF();
+	double E = 0;
+	double E2 = 0;
+	int numbMiniBaches = iterations / miniBachSize;
+	int M = PDF.getM();
+	int N = PDF.getN();
+	for (int i = 0; i < MAXITER; i++) {
+		int minibach = randi(distr_param(0, numbMiniBaches-1));
+		int minibachMin = miniBachSize * minibach;
+		int minibachMax = (minibachMin + 1)*minibach;
+		double minibachE = 0;
+		E = 0;
+		E2 = 0;
+		vec da = zeros(M);
+		vec Eda = zeros(M);
+		vec db = zeros(N);
+		vec Edb = zeros(N);
+		mat dw = zeros(M, N);
+		mat Edw = zeros(M, N);
+		PDF.setParticles();
+		PDF.setX();
+		for (int k = 0; k < 1000; k++) {
+			bruteForceStep(step);
+		}
+		for (int j = 0; j < iterations; j++) {
+			double tempE = bruteForceStep(step);
+			E += tempE;
+			E2 += tempE * tempE;
+			if (minibachMin <= j && j <= minibachMax) {
+				
+				vec tempa = PDF.derivativeLogPsiOverA();
+				vec tempb= PDF.derivativeLogPsioverB();
+				mat tempw = PDF.derivativeLogPsioverW();
+				minibachE += tempE;
+				da += tempa;
+				Eda += tempE * tempa;
+				db += tempb;
+				Edb += tempE * tempb;
+				dw += tempw;
+				Edw += tempE * tempw;
+			}
+
+		}
+		vec aGrad = 2 * (Eda / miniBachSize - da * minibachE / (miniBachSize*miniBachSize));
+		vec bGrad = 2 * (Edb / miniBachSize - db * minibachE / (miniBachSize*miniBachSize));
+		mat wGrad = 2 * (Edw / miniBachSize - dw * minibachE / (miniBachSize*miniBachSize));
+		PDF.a -= stepLength * aGrad;
+		PDF.b -= stepLength * bGrad;
+		PDF.w -= stepLength * wGrad;
+		E /= iterations;
+		E2 /= iterations;
+		cout << E << " " << (E2 - E * E) / sqrt(iterations) << endl;
+	}
 }
