@@ -20,9 +20,9 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 }
 
 void MLWavefunction::setWeightsAndBiases() {
-	a = randn(M)*.1;
-	b = randn(N)*.1;
-	w = randn(M, N)*.1;
+	a = randn(M)*1;
+	b = randn(N)*1;
+	w = randn(M, N)*1;
 }
 
 void MLWavefunction::setX() {
@@ -65,7 +65,8 @@ double MLWavefunction::localEnergy() {
 			delsum1 += w(i, j)/(1 + exp(-exponent));
 			sum2 += w(i, j)*w(i, j)*exponential / ((1 + exponential)*(1 + exponential));
 		}
-		double temp=(-x(i) + a(i) + delsum1);
+		//cout <<"hei" <<x(i)<<endl;
+		double temp=(-(x(i) - a(i)) + delsum1);
 		sum1 += temp * temp;
 	}
 	double output = 0.5*((M - (sum1 + sum2) / (sigma*sigma)) / (sigma*sigma) + omega*omega * dot(x, x));

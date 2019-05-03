@@ -7,5 +7,7 @@ int main()
 {
 	MLWavefunction test(1, 2, 2, 1);
 	Metropolis<MLWavefunction> ttt(test);
-	ttt.SGDBruteForce(0.0001, 0.000001, 0.001, 100000, 200, 10000);
+	cout << test.localEnergy();
+	//ttt.SGDBruteForce(0.0001, 0.000001, 0.001, 100000, 200, 10000);
+
 }
