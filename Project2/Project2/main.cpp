@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-	MLWavefunction test(1, 2, 2, 1);
+	MLWavefunction test(1, 1, 2, 1);
 	Metropolis<MLWavefunction> ttt(test);
 	cout << test.localEnergy();
-	//ttt.SGDBruteForce(0.0001, 0.000001, 0.001, 100000, 200, 10000);
+	ttt.SGDBruteForce(1, 0.000001, 1, 1000000, 200, 500000);
 
 }

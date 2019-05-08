@@ -20,9 +20,9 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 }
 
 void MLWavefunction::setWeightsAndBiases() {
-	a = randn(M)*1;
-	b = randn(N)*1;
-	w = randn(M, N)*1;
+	a = randn(M);
+	b = randn(N);
+	w = randn(M, N);
 }
 
 void MLWavefunction::setX() {
