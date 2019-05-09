@@ -1,5 +1,5 @@
 #include "MLwavefunction.h"
-
+#include <math.h>
 MLWavefunction::MLWavefunction()
 {
 }
@@ -100,5 +100,24 @@ mat MLWavefunction::derivativeLogPsioverW() {
 			out(i,j)=x(i) / ((1 + exp(exponent))*sigma*sigma);
 		}
 	}
+	return out;
+}
+
+
+vec MLWavefunction::driftForce() {
+	return -2*(x - a) / (sigma*sigma);
+}
+
+vec MLWavefunction::changeInPosition(double timeStep) {
+	return 0.5*driftForce() * timeStep + randn(M)*sqrt(timeStep);
+}
+
+double MLWavefunction::G(vec positionChanges, double timeStep) {
+	double pi = 3.14159265; //fell free to extend
+	int n = getNumberOfParticles();
+	double divisor = pow((4 * pi * 0.5 * timeStep), 3.0*n / 2);
+	double exponentDivisor = 4 * 0.5*timeStep;
+	vec temp = positionChanges - 0.5*timeStep*driftForce();
+	double out = exp(-dot(temp, temp) / exponentDivisor) / divisor;
 	return out;
 }

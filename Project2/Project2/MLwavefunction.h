@@ -31,5 +31,8 @@ public:
 	double omega=1.0;
 	double sigma;
 	bool interaction;
+	vec driftForce();
+	vec changeInPosition(double timeStep);
+	double G(vec positionChanges, double timeStep);
 };
 
