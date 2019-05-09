@@ -121,3 +121,27 @@ double MLWavefunction::G(vec positionChanges, double timeStep) {
 	double out = exp(-dot(temp, temp) / exponentDivisor) / divisor;
 	return out;
 }
+
+double MLWavefunction::gibsWavefunction() {
+	return sqrt(MLWave());
+}
+
+double MLWavefunction::gibsPDF() {
+	return MLWave();
+}
+
+vec MLWavefunction::gibsDerivativeLogPsiOverA() {
+	return 0.5 *derivativeLogPsiOverA();
+}
+
+vec MLWavefunction::gibsDerivativeLogPsioverB() {
+	return 0.5*derivativeLogPsioverB();
+}
+
+mat MLWavefunction::gibsDerivativeLogPsioverW() {
+	return 0.5 *derivativeLogPsioverW();
+}
+
+double MLWavefunction::gibsLocalEnergy() {
+
+}

@@ -34,5 +34,11 @@ public:
 	vec driftForce();
 	vec changeInPosition(double timeStep);
 	double G(vec positionChanges, double timeStep);
+	double gibsWavefunction();
+	double gibsPDF();
+	vec gibsDerivativeLogPsiOverA();
+	vec gibsDerivativeLogPsioverB();
+	mat gibsDerivativeLogPsioverW();
+	double gibsLocalEnergy();
 };
 

@@ -265,7 +265,7 @@ vec Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int
 	for (int i = 0; i < MAXITER; i++) {
 		int minibach = randi(distr_param(0, numbMiniBaches-1));
 		int minibachMin = miniBachSize * minibach;
-		int minibachMax = (minibachMin + 1)*minibach;
+		int minibachMax = (minibach+ 1)*miniBachSize;
 		double minibachE = 0;
 		E = 0;
 		E2 = 0;
@@ -277,7 +277,7 @@ vec Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int
 		mat Edw = zeros(M, N);
 		PDF.setParticles();
 		PDF.setX();
-		for (int k = 0; k < 1000; k++) {
+		for (int k = 0; k < 10000; k++) {
 			bruteForceStep(step);
 		}
 		for (int j = 0; j < iterations; j++) {
@@ -319,12 +319,14 @@ vec Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength,
 	double E = 0;
 	double E2 = 0;
 	int numbMiniBaches = iterations / miniBachSize;
+	cout << numbMiniBaches << endl;
 	int M = PDF.getM();
 	int N = PDF.getN();
 	for (int i = 0; i < MAXITER; i++) {
 		int minibach = randi(distr_param(0, numbMiniBaches - 1));
 		int minibachMin = miniBachSize * minibach;
-		int minibachMax = (minibachMin + 1)*minibach;
+		int minibachMax = (minibach + 1)*miniBachSize;
+
 		double minibachE = 0;
 		E = 0;
 		E2 = 0;
