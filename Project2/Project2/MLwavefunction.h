@@ -40,5 +40,7 @@ public:
 	vec gibsDerivativeLogPsioverB();
 	mat gibsDerivativeLogPsioverW();
 	double gibsLocalEnergy();
+	void gibsNewX();
+	void gibsNewH();
 };
 

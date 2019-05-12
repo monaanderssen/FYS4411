@@ -20,9 +20,10 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 }
 
 void MLWavefunction::setWeightsAndBiases() {
-	a = randn(M);
-	b = randn(N);
-	w = randn(M, N);
+	a = randn(M)*0.3;
+	b = randn(N)*0.3;
+	w = randn(M, N)*0.3;
+	h = zeros(N);
 }
 
 void MLWavefunction::setX() {
@@ -143,5 +144,38 @@ mat MLWavefunction::gibsDerivativeLogPsioverW() {
 }
 
 double MLWavefunction::gibsLocalEnergy() {
+	double sum1 = 0;
+	double sum2 = 0;
+	for (int i = 0; i < M; i++) {
+		double delsum1 = 0;
+		for (int j = 0; j < N; j++) {
+			double exponent = b(j) + dot(x, w.col(j)) / (sigma*sigma);
+			double exponential = exp(exponent);
+			delsum1 += w(i, j) / (1 + exp(-exponent));
+			sum2 += w(i, j)*w(i, j)*exponential / ((1 + exponential)*(1 + exponential));
+		}
+		//cout <<"hei" <<x(i)<<endl;
+		double temp = (-(x(i) - a(i)) + delsum1);
+		sum1 += 0.25*temp * temp;
+	}
+	double output = 0.5*((M*0.5 - (sum1 + 0.5*sum2) / (sigma*sigma)) / (sigma*sigma) + omega * omega * dot(x, x));
+	if (interaction) {
+		output += interactionTerm();
+	}
+	return output;
+}
 
+void MLWavefunction::gibsNewX() {
+	x = mvnrnd(a + w * h, eye(M,M)*sigma*sigma);
+}
+
+void MLWavefunction::gibsNewH() {
+	vec prob = randu(N);
+	for (int i = 0; i < N; i++) {
+		double p = 1 / (1 + exp(b(i) + dot(x, w.col(i))));
+		if (prob(i) < p) {
+			h(i) = 0;
+		}
+		else h(i) = 1;
+	}
 }
