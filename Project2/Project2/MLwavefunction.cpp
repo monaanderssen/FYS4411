@@ -20,9 +20,9 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 }
 
 void MLWavefunction::setWeightsAndBiases() {
-	a = randn(M)*0;
-	b = randn(N)*0;
-	w = randn(M, N)*0;
+	a = randn(M)*0.3;
+	b = randn(N)*0.3;
+	w = randn(M, N)*0.3;
 	h = zeros(N);
 }
 
@@ -106,7 +106,14 @@ mat MLWavefunction::derivativeLogPsioverW() {
 
 
 vec MLWavefunction::driftForce() {
-	return -2*(x - a) / (sigma*sigma);
+	vec out = -(x - a);
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < N; j++) {
+			double exponent = b(j) + dot(x, w.col(j)) / (sigma*sigma);
+			out(i) += w(i, j) / (1 + exp(-exponent));
+		}
+	}
+	return 2*out /(sigma*sigma);
 }
 
 vec MLWavefunction::changeInPosition(double timeStep) {
@@ -156,9 +163,9 @@ double MLWavefunction::gibsLocalEnergy() {
 		}
 		//cout <<"hei" <<x(i)<<endl;
 		double temp = (-(x(i) - a(i)) + delsum1);
-		sum1 += 0.25*temp * temp;
+		sum1 += temp * temp;
 	}
-	double output = 0.5*((M*0.5 - (sum1 + 0.5*sum2) / (sigma*sigma)) / (sigma*sigma) + omega * omega * dot(x, x));
+	double output = 0.5*((M*0.5 - (0.25*sum1 + 0.5*sum2) / (sigma*sigma)) / (sigma*sigma) + omega * omega * dot(x, x));
 	if (interaction) {
 		output += interactionTerm();
 	}
