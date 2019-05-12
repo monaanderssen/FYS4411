@@ -28,8 +28,10 @@ public:
     void importantSamplingToFile(double timeStep, int inerations);
     vec dEnergy(double timeStep,int iterations); //returns a vector with energy and derivative of energy using importantSampling
     vec minimize(double timeStep,double startAlpha,double tol, double stepLength, int iterations=10000, int MAXITER=200); //finding minimum using stepest desent
-	vec SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER,int miniBachSize);
-	vec SGDImportance(double timeStep, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize);
+	void SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER,int miniBachSize);
+	void SGDImportance(double timeStep, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize); //The tolerance variable is not used
+	void SGDGibbs(double stepLength,int iterations, int MAXITER, int miniBachSize);
+	double gibsStep();
 	T PDF;
     double p1;
     int n;
@@ -255,7 +257,7 @@ vec Metropolis<T>::minimize(double timeStep, double startAlpha, double tol, doub
 }
 
 template<class T>
-vec Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
+void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
 	p1 = PDF.PDF();
 	double E = 0;
 	double E2 = 0;
@@ -314,12 +316,12 @@ vec Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int
 
 
 template<class T>
-vec Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
+void Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
 	p1 = PDF.PDF();
 	double E = 0;
 	double E2 = 0;
 	int numbMiniBaches = iterations / miniBachSize;
-	cout << numbMiniBaches << endl;
+	//cout << numbMiniBaches << endl;
 	int M = PDF.getM();
 	int N = PDF.getN();
 	for (int i = 0; i < MAXITER; i++) {
@@ -350,6 +352,69 @@ vec Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength,
 				vec tempa = PDF.derivativeLogPsiOverA();
 				vec tempb = PDF.derivativeLogPsioverB();
 				mat tempw = PDF.derivativeLogPsioverW();
+				minibachE += tempE;
+				da += tempa;
+				Eda += tempE * tempa;
+				db += tempb;
+				Edb += tempE * tempb;
+				dw += tempw;
+				Edw += tempE * tempw;
+			}
+
+		}
+		vec aGrad = 2 * (Eda / miniBachSize - da * minibachE / (miniBachSize*miniBachSize));
+		vec bGrad = 2 * (Edb / miniBachSize - db * minibachE / (miniBachSize*miniBachSize));
+		mat wGrad = 2 * (Edw / miniBachSize - dw * minibachE / (miniBachSize*miniBachSize));
+		PDF.a -= stepLength * aGrad;
+		PDF.b -= stepLength * bGrad;
+		PDF.w -= stepLength * wGrad;
+		E /= iterations;
+		E2 /= iterations;
+		cout << E << " " << (E2 - E * E) / sqrt(iterations) << endl;
+	}
+}
+
+template<class T>
+double Metropolis<T>::gibsStep() {
+	PDF.gibsNewX();
+	PDF.gibsNewH();
+	return PDF.gibsLocalEnergy();
+}
+
+template<class T>
+void Metropolis<T>::SGDGibbs(double stepLength, int iterations, int MAXITER, int miniBachSize) {
+	p1 = PDF.PDF();
+	double E = 0;
+	double E2 = 0;
+	int numbMiniBaches = iterations / miniBachSize;
+	//cout << numbMiniBaches << endl;
+	int M = PDF.getM();
+	int N = PDF.getN();
+	for (int i = 0; i < MAXITER; i++) {
+		int minibach = randi(distr_param(0, numbMiniBaches - 1));
+		int minibachMin = miniBachSize * minibach;
+		int minibachMax = (minibach + 1)*miniBachSize;
+
+		double minibachE = 0;
+		E = 0;
+		E2 = 0;
+		vec da = zeros(M);
+		vec Eda = zeros(M);
+		vec db = zeros(N);
+		vec Edb = zeros(N);
+		mat dw = zeros(M, N);
+		mat Edw = zeros(M, N);
+		PDF.setParticles();
+		PDF.setX();
+		for (int j = 0; j < iterations; j++) {
+			double tempE = gibsStep();
+			E += tempE;
+			E2 += tempE * tempE;
+			if (minibachMin <= j && j <= minibachMax) {
+
+				vec tempa = PDF.gibsDerivativeLogPsiOverA();
+				vec tempb = PDF.gibsDerivativeLogPsioverB();
+				mat tempw = PDF.gibsDerivativeLogPsioverW();
 				minibachE += tempE;
 				da += tempa;
 				Eda += tempE * tempa;

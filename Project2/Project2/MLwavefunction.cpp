@@ -20,9 +20,9 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 }
 
 void MLWavefunction::setWeightsAndBiases() {
-	a = randn(M)*0.3;
-	b = randn(N)*0.3;
-	w = randn(M, N)*0.3;
+	a = randn(M)*0;
+	b = randn(N)*0;
+	w = randn(M, N)*0;
 	h = zeros(N);
 }
 
@@ -172,7 +172,7 @@ void MLWavefunction::gibsNewX() {
 void MLWavefunction::gibsNewH() {
 	vec prob = randu(N);
 	for (int i = 0; i < N; i++) {
-		double p = 1 / (1 + exp(b(i) + dot(x, w.col(i))));
+		double p = 1 / (1 + exp(b(i) + dot(x, w.col(i))/(sigma*sigma)));
 		if (prob(i) < p) {
 			h(i) = 0;
 		}
