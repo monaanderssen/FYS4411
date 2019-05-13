@@ -259,6 +259,10 @@ vec Metropolis<T>::minimize(double timeStep, double startAlpha, double tol, doub
 template<class T>
 void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
 	p1 = PDF.PDF();
+	string fileName;
+	fileName = "BruteForceInteraction" + to_string(PDF.interaction) + "Dim" + to_string(dimension) + "Npart" + to_string(n) + "Hiden" + to_string(PDF.N) + "Iter" + to_string(iterations) + "LearningRate" + to_string(stepLength) + ".txt";
+	ofstream file;
+	file.open(fileName);
 	double E = 0;
 	double E2 = 0;
 	int numbMiniBaches = iterations / miniBachSize;
@@ -284,6 +288,7 @@ void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, in
 		}
 		for (int j = 0; j < iterations; j++) {
 			double tempE = bruteForceStep(step);
+			file << tempE << " ";
 			E += tempE;
 			E2 += tempE * tempE;
 			if (minibachMin <= j && j <= minibachMax) {
@@ -310,7 +315,9 @@ void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, in
 		E /= iterations;
 		E2 /= iterations;
 		cout << E << " " << (E2 - E * E) / sqrt(iterations) << endl;
+		file << endl;
 	}
+	file.close();
 }
 
 
