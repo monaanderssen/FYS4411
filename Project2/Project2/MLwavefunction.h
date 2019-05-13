@@ -12,6 +12,7 @@ public:
 	MLWavefunction(int dimension, int numberOfParticles, int numberOfHidenModes, double sigma);
 	void setWeightsAndBiases();
 	void setX();
+	void setInteraction() { interaction = true; }//only run this if you want interaction
 	double MLWave();
 	double PDF();
 	double localEnergy();

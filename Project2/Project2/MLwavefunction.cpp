@@ -14,6 +14,7 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 	this->sigma = sigma;
 	this->dimension = dimension;
 	this->numberOfParticles = numberOfParticles;
+	this -> interaction = false;
 	setParticles();
 	setWeightsAndBiases();
 	setX();
@@ -77,8 +78,19 @@ double MLWavefunction::localEnergy() {
 	return output;
 }
 
-double MLWavefunction::interactionTerm() { //not finished
-	return 0;
+double MLWavefunction::interactionTerm() { 
+	double sum = 0;
+	for (int i = 1; i < numberOfParticles; i++) {
+		for (int j = 0; j < i; j++) {
+			double tempSum = 0;
+			for (int k = 0; k < dimension; k++) {
+				double temp = x(i*numberOfParticles + k) - x(j*numberOfParticles + k);
+				tempSum += temp * temp;
+			}
+			sum += 1 / sqrt(tempSum);
+		}
+	}
+	return sum;
 }
 
 vec MLWavefunction::derivativeLogPsiOverA() {
