@@ -259,6 +259,7 @@ vec Metropolis<T>::minimize(double timeStep, double startAlpha, double tol, doub
 template<class T>
 void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
 	p1 = PDF.PDF();
+	int tempIter = iterations;
 	string fileName;
 	fileName = "BruteForceInteraction" + to_string(PDF.interaction) + "Dim" + to_string(dimension) + "Npart" + to_string(n) + "Hiden" + to_string(PDF.N) + "Iter" + to_string(iterations) + "LearningRate" + to_string(stepLength) + ".txt";
 	ofstream file;
@@ -273,6 +274,13 @@ void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, in
 		int minibachMin = miniBachSize * minibach;
 		int minibachMax = (minibach+ 1)*miniBachSize;
 		double minibachE = 0;
+		if (i <= (MAXITER - 20)) {
+			iterations = 10000;
+		}
+		else
+		{
+			iterations = tempIter;
+		}
 		E = 0;
 		E2 = 0;
 		vec da = zeros(M);
@@ -284,11 +292,13 @@ void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, in
 		PDF.setParticles();
 		PDF.setX();
 		for (int k = 0; k < 10000; k++) {
-			bruteForceStep(step);
+			bruteForceStep(step); 
 		}
 		for (int j = 0; j < iterations; j++) {
 			double tempE = bruteForceStep(step);
-			file << tempE << " ";
+			if (i > (MAXITER - 20)) {
+				file << tempE << " ";
+			}
 			E += tempE;
 			E2 += tempE * tempE;
 			if (minibachMin <= j && j <= minibachMax) {
@@ -315,7 +325,9 @@ void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, in
 		E /= iterations;
 		E2 /= iterations;
 		cout << E << " " << (E2 - E * E) / sqrt(iterations) << endl;
-		file << endl;
+		if (i > (MAXITER - 20)) {
+			file << endl;
+		}
 	}
 	file.close();
 }
@@ -325,6 +337,11 @@ void Metropolis<T>::SGDBruteForce(double step, double tol, double stepLength, in
 template<class T>
 void Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength, int iterations, int MAXITER, int miniBachSize) {
 	p1 = PDF.PDF();
+	int tempIter = iterations;
+	string fileName;
+	fileName = "ImportanceInteraction" + to_string(PDF.interaction) + "Dim" + to_string(dimension) + "Npart" + to_string(n) + "Hiden" + to_string(PDF.N) + "Iter" + to_string(iterations) + "LearningRate" + to_string(stepLength) + ".txt";
+	ofstream file;
+	file.open(fileName);
 	double E = 0;
 	double E2 = 0;
 	int numbMiniBaches = iterations / miniBachSize;
@@ -335,7 +352,10 @@ void Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength
 		int minibach = randi(distr_param(0, numbMiniBaches - 1));
 		int minibachMin = miniBachSize * minibach;
 		int minibachMax = (minibach + 1)*miniBachSize;
-
+		if (i <= (MAXITER - 20)) {
+			iterations = 10000;
+		}
+		else iterations = tempIter;
 		double minibachE = 0;
 		E = 0;
 		E2 = 0;
@@ -352,6 +372,9 @@ void Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength
 		}
 		for (int j = 0; j < iterations; j++) {
 			double tempE = importantSamplingStep(timeStep);
+			if (i > (MAXITER - 20)) {
+				file << tempE << " ";
+			}
 			E += tempE;
 			E2 += tempE * tempE;
 			if (minibachMin <= j && j <= minibachMax) {
@@ -378,6 +401,9 @@ void Metropolis<T>::SGDImportance(double timeStep, double tol, double stepLength
 		E /= iterations;
 		E2 /= iterations;
 		cout << E << " " << (E2 - E * E) / sqrt(iterations) << endl;
+		if (i > (MAXITER - 20)) {
+			file << endl;
+		}
 	}
 }
 
@@ -391,6 +417,11 @@ double Metropolis<T>::gibsStep() {
 template<class T>
 void Metropolis<T>::SGDGibbs(double stepLength, int iterations, int MAXITER, int miniBachSize) {
 	p1 = PDF.PDF();
+	int tempIter = iterations;
+	string fileName;
+	fileName = "GibbsInteraction" + to_string(PDF.interaction) + "Dim" + to_string(dimension) + "Npart" + to_string(n) + "Hiden" + to_string(PDF.N) + "Iter" + to_string(iterations) + "LearningRate" + to_string(stepLength) + ".txt";
+	ofstream file;
+	file.open(fileName);
 	double E = 0;
 	double E2 = 0;
 	int numbMiniBaches = iterations / miniBachSize;
@@ -401,7 +432,10 @@ void Metropolis<T>::SGDGibbs(double stepLength, int iterations, int MAXITER, int
 		int minibach = randi(distr_param(0, numbMiniBaches - 1));
 		int minibachMin = miniBachSize * minibach;
 		int minibachMax = (minibach + 1)*miniBachSize;
-
+		if (i <= (MAXITER - 20)) {
+			iterations = 10000;
+		}
+		else iterations = tempIter;
 		double minibachE = 0;
 		E = 0;
 		E2 = 0;
@@ -415,6 +449,9 @@ void Metropolis<T>::SGDGibbs(double stepLength, int iterations, int MAXITER, int
 		PDF.setX();
 		for (int j = 0; j < iterations; j++) {
 			double tempE = gibsStep();
+			if (i > (MAXITER - 20)) {
+				file << tempE << endl;
+			}
 			E += tempE;
 			E2 += tempE * tempE;
 			if (minibachMin <= j && j <= minibachMax) {
@@ -441,5 +478,8 @@ void Metropolis<T>::SGDGibbs(double stepLength, int iterations, int MAXITER, int
 		E /= iterations;
 		E2 /= iterations;
 		cout << E << " " << (E2 - E * E) / sqrt(iterations) << endl;
+		if (i > (MAXITER - 20)) {
+			file << endl;
+		}
 	}
 }
