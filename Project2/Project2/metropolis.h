@@ -6,7 +6,7 @@
 #include <armadillo>
 #include <iostream>
 #include <fstream>
-//#include <mpi.h> //har problemer med a kompilere denne
+//#include <mpi.h> //Is not used
 
 using namespace arma;
 using namespace std;
