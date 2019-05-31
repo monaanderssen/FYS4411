@@ -5,13 +5,11 @@ using namespace std;
 
 int main()
 {
-	MLWavefunction test(2, 2, 2, 1);
-	//test.setInteraction();
+	MLWavefunction test(2, 2, 2, sqrt(0.5)); //Dimension, number of particles, hidden nodes, sigma.
+	//test.setInteraction();  //Sett in tis to include interactions.
 	Metropolis<MLWavefunction> ttt(test);
-	//cout << test.localEnergy();
-	//ttt.SGDBruteForce(1, 0.000001, 0.1, 1000000, 200, 10000);
-	ttt.SGDImportance(1, 0.001, 0.05, 10000, 400, 1000);
-	//test.gibsNewX();
-	//ttt.SGDGibbs(.1,10000,400,1000);
+	ttt.SGDBruteForce(1, 0.1, 1<<20, 200, 10000); //the parameters are steplength, learningrate, iterations, lerningcycles, bachSize
+	ttt.SGDImportance(1, 0.1, 1<<20, 200, 10000); // ------------------------""-------------------
+	ttt.SGDGibbs(.1,1<<20,1000,10000); //The parameters are learningrate, iterations, lerningcycles, bachSize
 
 }

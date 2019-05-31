@@ -5,7 +5,7 @@
 #include <cmath>
 using std::vector;
 
-
+//Wavefunction and Particle are only used to construct the MLWavefunction
 Wavefunction::Wavefunction() {
 
 }

@@ -24,12 +24,12 @@ public:
 	mat derivativeLogPsioverW();
 	int M;  //number of visible/input variables numberOfParticles * dimension
 	int N;  //number of hiden variables
-	vec a;
-	vec b;
-	mat w;
-	vec x;
-	vec h;
-	double omega=1.0;
+	vec a; //Visible biases
+	vec b; //hiden biases
+	mat w; //weights
+	vec x; //Visible nodes
+	vec h; //Hiden nodes
+	double omega=1.0; //in this project we are only considering omega=1
 	double sigma;
 	bool interaction;
 	vec driftForce();

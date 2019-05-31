@@ -14,13 +14,14 @@ MLWavefunction::MLWavefunction(int dimension, int numberOfParticles, int numberO
 	this->sigma = sigma;
 	this->dimension = dimension;
 	this->numberOfParticles = numberOfParticles;
-	this -> interaction = false;
-	setParticles();
+	this -> interaction = false; //ther is no interaction unles spesified
+	setParticles();  
 	setWeightsAndBiases();
 	setX();
 }
 
 void MLWavefunction::setWeightsAndBiases() {
+	//we know that the optimal values in the non-interacting case are 0 so we start close to this
 	a = randn(M)*0.3;
 	b = randn(N)*0.3;
 	w = randn(M, N)*0.3;
@@ -78,9 +79,9 @@ double MLWavefunction::localEnergy() {
 	return output;
 }
 
-double MLWavefunction::interactionTerm() { 
+double MLWavefunction::interactionTerm() { //This is not working in 1D
 	double sum = 0;
-	for (int i = 1; i < numberOfParticles; i++) {
+	for (int i = 0; i < numberOfParticles; i++) {
 		for (int j = 0; j < i; j++) {
 			double tempSum = 0;
 			for (int k = 0; k < dimension; k++) {
